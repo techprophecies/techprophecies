@@ -1,0 +1,1097 @@
+<head>
+  <style>
+    :root {
+      --balloon-border-radius: 16px;
+      --balloon-color: hsla(0, 0%, 6%, 0.95);
+      --balloon-text-color: #fff;
+      --balloon-font-size: 1rem;
+      --balloon-move: 2px;
+    }
+    :root {
+      --reach-dialog: 1;
+    }
+    :root,
+    .st--t-lkafsQ {
+      --st--colors-black100: #000000;
+      --st--colors-black95: #0d0d0d;
+      --st--colors-black90: #1a1a1a;
+      --st--colors-black80: #333333;
+      --st--colors-black70: #4d4d4d;
+      --st--colors-black60: #666666;
+      --st--colors-black50: #7f7f7f;
+      --st--colors-black40: #999999;
+      --st--colors-black30: #b3b3b3;
+      --st--colors-black20: #cccccc;
+      --st--colors-black10: #e6e6e6;
+      --st--colors-black5: #f2f2f2;
+      --st--colors-white20: rgba(255, 255, 255, 0.2);
+      --st--colors-white100: #ffffff;
+      --st--colors-red100: #f93a3a;
+      --st--colors-red10: #ffe9ea;
+      --st--colors-green100: #24be74;
+      --st--colors-green10: #e4f9ef;
+      --st--colors-orange100: #f1c23e;
+      --st--colors-blue100: #0101ff;
+      --st--space-0: 0px;
+      --st--space-1: 4px;
+      --st--space-2: 8px;
+      --st--space-3: 12px;
+      --st--space-4: 16px;
+      --st--space-5: 20px;
+      --st--space-6: 24px;
+      --st--space-7: 32px;
+      --st--space-8: 48px;
+      --st--space-9: 64px;
+      --st--space-10: 96px;
+      --st--space-11: 128px;
+      --st--fontWeights-medium: 500;
+      --st--fontWeights-semibold: 600;
+      --st--fontWeights-body: var(--st--fontWeights-medium);
+      --st--fontWeights-heading: var(--st--fontWeights-semibold);
+      --st--fonts-body: "Roobert", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      --st--fonts-mono: "FormularMono", Consolas, "Andale Mono WT",
+        "Andale Mono", "Lucida Console", "Lucida Sans Typewriter",
+        "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono",
+        "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+      --st--fonts-display: "Foundation Display", -apple-system,
+        BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      --st--fonts-roobert: "Roobert", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+      --st--fontSizes-0: 14px;
+      --st--fontSizes-1: 16px;
+      --st--fontSizes-2: 18px;
+      --st--fontSizes-3: 24px;
+      --st--fontSizes-4: 36px;
+      --st--fontSizes-5: 46px;
+      --st--fontSizes-6: 56px;
+      --st--fontSizes-7: 66px;
+      --st--fontSizes-8: 76px;
+      --st--fontSizes-9: 86px;
+      --st--fontSizes-13: 126px;
+      --st--radii-0: 0px;
+      --st--radii-1: 5px;
+      --st--radii-2: 10px;
+      --st--radii-3: 15px;
+      --st--radii-round: 9999px;
+      --st--shadows-0: 0px 10px 20px rgba(0, 0, 0, 0.05);
+      --st--shadows-1: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      --st--shadows-2: 0px 15px 20px rgba(0, 0, 0, 0.15);
+      --st--shadows-3: 0px 8px 15px rgba(0, 0, 0, 0.25);
+      --st--shadows-stroke: inset 0 0 0 3px #000;
+      --st--shadows-button: var(--st--shadows-3);
+      --st--transitions-0: 100ms;
+      --st--transitions-1: 300ms;
+      --st--transitions-2: 500ms;
+      --st--transitions-3: 1000ms;
+      --st--transitions-ease: cubic-bezier(0.23, 1, 0.32, 1);
+      --st--sizes-container: 1600px;
+      --st--lineHeights-body: 1.7;
+      --st--letterSpacings-mono: 0.0725em;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    *,
+    :after,
+    :before {
+      -webkit-box-sizing: inherit;
+      -moz-box-sizing: inherit;
+      box-sizing: inherit;
+    }
+
+    textarea:focus,
+    input:focus {
+      outline: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      margin: 0;
+    }
+
+    body {
+      margin: 0px;
+      background-color: transparent;
+      color: rgb(0, 0, 0);
+      font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      -webkit-font-smoothing: antialiased;
+      opacity: 1;
+      transition: background-color 300ms ease-in-out 0s,
+        opacity 800ms ease-in-out 0s;
+      display: -moz-box;
+      display: flex;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      flex-direction: column;
+      -moz-box-flex: 1;
+      flex-grow: 1;
+    }
+
+    .page-container {
+      display: -moz-box;
+      display: flex;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      flex-direction: column;
+      -moz-box-flex: 1;
+      flex-grow: 1;
+    }
+
+    header {
+      margin: 0;
+      min-width: 0;
+      position: relative;
+    }
+
+    /* HEADER WRAPPER */
+
+    .header-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+    }
+
+    .header-wrapper {
+      margin: 0;
+      min-width: 0;
+      position: relative;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+    }
+
+    .header-inner {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      width: 100%;
+      max-width: 1600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 24px;
+    }
+
+    /* HEADER INNER */
+
+    @media screen and (min-width: 40em) {
+      .header-inner {
+        padding-top: 32px;
+      }
+    }
+
+    @media screen and (min-width: 52em) {
+      .header-inner {
+        padding-bottom: 46px;
+      }
+    }
+
+    /* MENU */
+
+    .menu-wrapper {
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .menu {
+      display: none;
+      justify-content: center;
+      flex-basis: 100%;
+    }
+
+    @media (min-width: 52em) {
+      .menu {
+        display: flex;
+        position: absolute;
+        bottom: -46px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+    }
+
+    .menu a {
+      font-family: var(--st--fonts-body);
+      font-size: var(--st--fontSizes-2);
+      font-weight: 600;
+      color: var(--st--colors-black60);
+      text-decoration: none;
+      transition: color var(--st--transitions-0) var(--st--transitions-ease);
+      margin-left: var(--st--space-1);
+      margin-right: var(--st--space-1);
+      padding-left: var(--st--space-1);
+      padding-right: var(--st--space-1);
+    }
+
+    @media (hover: hover) {
+      .menu a:hover {
+        color: var(--st--colors-black100);
+      }
+    }
+
+    /* LOGO */
+
+    .logo-container {
+      background: red;
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      color: var(--theme-ui-colors-black-100, #000000);
+    }
+
+    .logo-wrapper {
+      height: 33px;
+      width: 98px;
+    }
+
+    .logo {
+    }
+
+    /**************/
+    /* SEARCH BAR */
+    /**************/
+
+    .search-container {
+      display: none;
+      flex: 1 1 0%;
+      justify-content: center;
+      position: relative;
+    }
+
+    @media (min-width: 52em) {
+      .search-container {
+        display: block;
+        padding-left: var(--st--space-7);
+        padding-right: var(--st--space-7);
+      }
+    }
+
+    /* SEARCH WRAPPER */
+
+    .search-wrapper {
+      position: relative;
+      z-index: 999;
+    }
+
+    /* SEARCH ICON */
+
+    .search-icon {
+      left: 20px;
+      pointer-events: none;
+    }
+
+    .search-icon[data-active="true"] {
+      color: var(--st--colors-black100);
+    }
+
+    /****************/
+    /* SEARCH INPUT */
+    /****************/
+
+    input {
+      -webkit-writing-mode: horizontal-tb !important;
+      text-rendering: auto;
+      color: -internal-light-dark(black, white);
+      letter-spacing: normal;
+      word-spacing: normal;
+      line-height: normal;
+      text-transform: none;
+      text-indent: 0px;
+      text-shadow: none;
+      display: inline-block;
+      text-align: start;
+      appearance: auto;
+      -webkit-rtl-ordering: logical;
+      cursor: text;
+      background-color: -internal-light-dark(
+        rgb(255, 255, 255),
+        rgb(59, 59, 59)
+      );
+      margin: 0em;
+      padding: 1px 2px;
+      border-width: 2px;
+      border-style: inset;
+      border-color: -internal-light-dark(
+        rgb(118, 118, 118),
+        rgb(133, 133, 133)
+      );
+      border-image: initial;
+    }
+
+    input:focus-visible {
+      outline-offset: 0px;
+    }
+
+    :focus-visible {
+      outline: -webkit-focus-ring-color auto 1px;
+    }
+
+    .search-wrapper input {
+      border: none;
+      width: 100%;
+      padding-left: var(--st--space-8);
+      --st---strokeColor: rgba(0, 0, 0, 0.05);
+      font-family: var(--st--fonts-body);
+      line-height: 1;
+      font-size: var(--st--fontSizes-2);
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      appearance: none;
+      padding-left: var(--st--space-5);
+      padding-right: var(--st--space-5);
+      transition-property: box-shadow;
+      font-weight: 600;
+      border-radius: var(--st--radii-round);
+    }
+
+    .search-wrapper input.border-large {
+      --st---shadowColor: rgba(0, 0, 0, 0.05);
+      --st---strokeColor: rgba(0, 0, 0, 0.05);
+      --st---borderColor: var(--st--colors-black100);
+      --st---placeholderColor: var(--st--colors-black40);
+      --st---placeholderFocusColor: var(--st--colors-black40);
+      border: none;
+      box-shadow: 0px 0px 0px 1px var(--st---strokeColor),
+        0px 10px 20px var(--st---shadowColor);
+    }
+
+    .search-wrapper input:focus,
+    .search-wrapper input[data-active="true"] {
+      box-shadow: inset 0px 0px 0px 3px var(--st---borderColor),
+        0px 10px 20px var(--st---shadowColor);
+    }
+
+    /* CONNECT WALLET */
+
+    .connect-wallet-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+    .connect-wallet-wrapper {
+      box-sizing: border-box;
+      margin: 0px;
+      min-width: 0px;
+      -webkit-box-align: center;
+      align-items: center;
+      display: none;
+    }
+
+    @media screen and (min-width: 52em) {
+      .connect-wallet-wrapper {
+        display: flex;
+      }
+    }
+
+    @media (hover: hover) {
+      button.connect-wallet:hover {
+        background-color: var(--theme-ui-colors-black-100, #000000);
+        color: var(--theme-ui-colors-white-100, #ffffff);
+        box-shadow: rgb(0 0 0 / 25%) 0px 8px 15px;
+        transform: translateY(-2px);
+      }
+    }
+
+    button.connect-wallet {
+      margin: 0px;
+      min-width: 0px;
+      appearance: none;
+      text-align: center;
+      line-height: inherit;
+      text-decoration: none;
+      will-change: transform;
+      font-weight: 600;
+      padding: 16px 24px;
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1) 0s;
+      cursor: pointer;
+      outline: none;
+      background-color: var(--theme-ui-colors-black-100, #000000);
+      color: var(--theme-ui-colors-white-100, #ffffff);
+      border-width: 2px;
+      border-style: solid;
+      border-image: initial;
+      border-color: var(--theme-ui-colors-black-90, #1a1a1a);
+      font-size: 18px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 999px;
+      min-height: 46px;
+      max-height: 46px;
+    }
+
+    @media screen and (min-width: 52em) {
+      button.connect-wallet {
+        min-height: 54px;
+        max-height: 54px;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+    }
+
+    @media screen and (min-width: 52em) {
+      button.connect-wallet {
+        padding: 16px 24px;
+      }
+    }
+
+    /***************/
+    /* LATEST MINT */
+    /***************/
+
+    /* FEATURE CONTAINER */
+
+    .feature-container {
+      min-width: 0;
+      display: flex;
+      flex: 1;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* FEATURE WRAPPER */
+
+    .feature-wrapper {
+      margin: 0;
+      min-width: 0;
+      display: grid;
+      grid-gap: 3px;
+      gap: 0;
+      min-height: calc(80vh - 86px);
+    }
+
+    @media screen and (min-width: 52em) {
+      .feature-wrapper {
+        padding-top: 64px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      }
+    }
+
+    @media screen and (min-width: 64em) {
+      .feature-wrapper {
+        padding-top: 96px;
+        gap: 48px;
+      }
+    }
+
+    @media screen and (min-width: 72em) {
+      .feature-wrapper {
+        gap: 96px;
+      }
+    }
+
+    /* FEATURE ASSET CONTAINER */
+
+    a.feature-asset-container {
+      width: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+
+    @media screen and (min-width: 52em) {
+      a.feature-asset-container {
+        max-height: 400px;
+      }
+    }
+
+    @media screen and (min-width: 52em) {
+      a.feature-asset-container {
+        max-width: 640px;
+        margin-left: auto;
+      }
+    }
+
+    /* FEATURE ASSET WRAPPER */
+
+    .feature-asset-wrapper {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+      margin: auto;
+    }
+
+    @media screen and (min-width: 52em) {
+      .feature-asset-wrapper {
+        max-height: 400px;
+      }
+    }
+
+    /* FEATURE ASSET WRAPPER INNER */
+
+    .feature-asset-wrapper-inner {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      position: relative;
+    }
+
+    .feature-asset-wrapper-inner video {
+      width: 100%;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      transition: filter 0.3s ease-in-out 0s;
+      cursor: default;
+      filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 5px 8px);
+    }
+
+    @media screen and (min-width: 40em) {
+      .feature-wrapper-inner video {
+        filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 20px 20px);
+      }
+    }
+
+    /* FEATURE INFO CONTAINER */
+
+    .feature-info-container {
+      padding-bottom: 24px;
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      background: yellow;
+      border: 1px solid black;
+    }
+
+    @media screen and (min-width: 64em) {
+      .feature-info-container {
+        padding-bottom: 24px;
+      }
+    }
+
+    /****************/
+    /* EXPLORE GRID */
+    /****************/
+
+    /* NFT GRID CONTAINER */
+
+    .nft-grid-container {
+      box-sizing: border-box;
+      margin: 0 auto;
+      min-width: 0;
+      display: flex;
+      flex: 1;
+      max-width: 1600px;
+      padding: 0 24px;
+      position: relative;
+      z-index: 4;
+    }
+
+    @media screen and (min-width: 40em) {
+      .css-u5ziy1 {
+        font-size: 24px;
+      }
+    }
+
+    .nft-grid-header-title-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      font-family: "Roobert", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      font-weight: 600;
+      font-size: 20px;
+      -webkit-letter-spacing: -0.02em;
+      -moz-letter-spacing: -0.02em;
+      -ms-letter-spacing: -0.02em;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    /* NFT GRID HEADER TITLE WRAPPER */
+
+    .nft-grid-header-title-wrapper {
+      margin: 0px;
+      min-width: 0px;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+    }
+
+    /**********************/
+    /* NFT GRID CONTAINER */
+    /**********************/
+
+    .nft-grid-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: grid;
+      grid-gap: 3px;
+      padding-bottom: 32px;
+      gap: 16px;
+    }
+
+    @media screen and (min-width: 40em) {
+      .nft-grid-container {
+        padding-bottom: 48px;
+      }
+    }
+
+    @media screen and (min-width: 52em) {
+      .nft-grid-container {
+        padding-bottom: 64px;
+        gap: 32px;
+      }
+    }
+
+    @media screen and (min-width: 64em) {
+      .nft-grid-container {
+        padding-bottom: 96px;
+      }
+    }
+
+    /* NFT GRID WRAPPER */
+
+    .nft-grid-wrapper {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+      z-index: 4;
+    }
+
+    .nft-grid-wrapper-inner {
+      display: grid;
+    }
+
+    @media (min-width: 40em) {
+      .nft-grid-wrapper-inner {
+        padding-bottom: 48px;
+      }
+    }
+
+    @media (min-width: 64em) {
+      .nft-grid-wrapper-inner {
+        grid-gap: var(--st--space-6);
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 80em) {
+      .nft-grid-wrapper-inner {
+        grid-gap: var(--st--space-7);
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /*******************/
+    /* NFT GRID HEADER */
+    /*******************/
+
+    /* NFT GRID HEADER CONTAINER */
+
+    .nft-grid-header-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      border-bottom: solid 1px;
+      border-color: var(--theme-ui-colors-black-10, #e6e6e6);
+      margin-bottom: 24px;
+    }
+
+    /* NFT GRID HEADER WRAPPER */
+
+    .nft-grid-header-wrapper {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      padding-top: 48px;
+      padding-bottom: 24px;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      -webkit-align-items: baseline;
+      -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+      align-items: baseline;
+    }
+
+    @media screen and (min-width: 40em) {
+      .nft-grid-header-wrapper {
+        padding-top: 64px;
+      }
+    }
+
+    @media screen and (min-width: 52em) {
+      .nft-grid-header-wrapper {
+        padding-top: 96px;
+      }
+    }
+
+    .nft-grid-header-view-container {
+      font-size: 18px;
+      text-decoration: unset;
+    }
+
+    .nft-grid-header-view-text {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      font-family: "Roobert", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol";
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--theme-ui-colors-black-60, #666666);
+      -webkit-transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    @media screen and (min-width: 40em) {
+      .nft-grid-header-view-text {
+        font-size: 18px;
+      }
+    }
+
+    /**********************/
+    /* NFT CARD CONTAINER */
+    /**********************/
+
+    @media (hover: hover) {
+      .nft-card-container:hover {
+        -webkit-transform: translateY(-4px);
+        -ms-transform: translateY(-4px);
+        transform: translateY(-4px);
+        box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+      }
+    }
+
+    .nft-card-container {
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      background-color: var(--theme-ui-colors-white-100, #ffffff);
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex: auto;
+      -ms-flex: auto;
+      flex: auto;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 10px 20px rgb(0 0 0 / 5%);
+      -webkit-transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      will-change: transform;
+    }
+
+    .asset-container {
+      margin: 0;
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex: 1;
+      background: red;
+    }
+    .asset-wrapper {
+      margin: 0;
+      min-width: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--theme-ui-colors-black-5, #f2f2f2);
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    video.asset {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      max-width: 100%;
+      opacity: 1;
+      height: 280.25px;
+    }
+
+    /* VERSE CONTAINER */
+
+    .verse-container {
+      box-sizing: border-box;
+      margin: 0;
+      min-width: 0;
+      display: grid;
+      grid-gap: 24px;
+      box-shadow: 0px 10px 20px rgb(0 0 0 / 5%);
+      padding: 24px;
+      -webkit-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+    }
+    .verse-container h3 {
+      font-weight: 600;
+      font-size: var(--st--fontSizes-3);
+      font-family: var(--st--fonts-body);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .verse-writer {
+      margin: 0;
+      min-width: 0;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      flex-direction: column;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-container">
+    <header>
+      <div class="header-container">
+        <div class="header-wrapper">
+          <div class="header-inner">
+            <div class="menu-wrapper">
+              <div class="logo-container">
+                <div class="logo-wrapper"></div>
+              </div>
+
+              <div class="search-container">
+                <div class="search-wrapper">
+                  <span class="search-icon"></span>
+                  <input
+                    class="border-large"
+                    data-active="false"
+                    placeholder="Search Tech Prophecies..."
+                    value=""
+                  />
+                </div>
+              </div>
+
+              <div class="connect-wallet-container">
+                <div class="connect-wallet-wrapper">
+                  <button class="connect-wallet">Connect Wallet</button>
+                </div>
+              </div>
+
+              <nav class="menu">
+                <a href="">Explore</a>
+                <a href="">About</a>
+                <a href="">Mint</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="feature-container">
+      <div class="feature-wrapper">
+        <a class="feature-asset-container" href="">
+          <div class="feature-asset-wrapper">
+            <div class="feature-asset-wrapper-inner">
+              <video
+                src="https://developers.playwire.com/data/moises/nft.mp4"
+                poster="https://assets.foundation.app/b3/9a/Qmaz5dfqm2iqPchw9aXG8woTyFGfaeLnhKGovyiWszb39a/nft.jpg"
+                loop
+                autoplay
+                playsinline
+              ></video>
+            </div>
+          </div>
+        </a>
+        <div class="feature-info-container"></div>
+      </div>
+    </section>
+
+    <section class="nft-grid-container">
+      <div class="nft-grid-header-container">
+        <div class="nft-grid-header-wrapper">
+          <div class="nft-grid-header-title-container">
+            <div class="nft-grid-header-title-wrapper">
+              <span>⬤</span>
+              <span>Latest Collected</span>
+            </div>
+          </div>
+
+          <a class="nft-grid-header-view-container" href="">
+            <div class="nft-grid-header-view-text">View Unminted</div></a
+          >
+        </div>
+      </div>
+
+      <div class="nft-grid-wrapper">
+        <div class="nft-grid-wrapper-inner">
+          <div class="nft-card-container">
+            <div class="asset-container">
+              <div class="asset-wrapper">
+                <video
+                  src="https://developers.playwire.com/data/moises/nft.mp4"
+                  class="asset"
+                  autoplay
+                  loop
+                ></video>
+              </div>
+            </div>
+            <div class="verse-container">
+              <div class="verse-writer">
+                <h3>COMPUTER MAN</h3>
+                <div>— Sad Keanu 14:34</div>
+              </div>
+            </div>
+            <div class="button-container"></div>
+          </div>
+
+          <div class="nft-card-container">
+            <div class="asset-container">
+              <div class="asset-wrapper">
+                <video
+                  src="https://developers.playwire.com/data/moises/nft.mp4"
+                  class="asset"
+                  autoplay
+                  loop
+                ></video>
+              </div>
+            </div>
+            <div class="verse-container">
+              <div class="verse-writer">
+                <h3>COMPUTER MAN</h3>
+                <div>— Sad Keanu 14:34</div>
+              </div>
+            </div>
+            <div class="button-container"></div>
+          </div>
+
+          <div class="nft-card-container">
+            <div class="asset-container">
+              <div class="asset-wrapper">
+                <video
+                  src="https://developers.playwire.com/data/moises/nft.mp4"
+                  class="asset"
+                  autoplay
+                  loop
+                ></video>
+              </div>
+            </div>
+            <div class="verse-container">
+              <div class="verse-writer">
+                <h3>COMPUTER MAN</h3>
+                <div>— Sad Keanu 14:34</div>
+              </div>
+            </div>
+            <div class="button-container"></div>
+          </div>
+
+          <div class="nft-card-container">
+            <div class="asset-container">
+              <div class="asset-wrapper">
+                <video
+                  src="https://developers.playwire.com/data/moises/nft.mp4"
+                  class="asset"
+                  autoplay
+                  loop
+                ></video>
+              </div>
+            </div>
+            <div class="verse-container">
+              <div class="verse-writer">
+                <h3>COMPUTER MAN</h3>
+                <div>— Sad Keanu 14:34</div>
+              </div>
+            </div>
+            <div class="button-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>

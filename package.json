@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "next": "11.1.2",
+    "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-hover-video-player": "^9.3.0",
+    "styled-components": "^5.2.1",
     "web3": "^1.6.1"
   },
   "devDependencies": {
@@ -23,6 +26,7 @@
     "autoprefixer": "^10.3.7",
     "axios": "^0.20.0",
     "babel-eslint": "^10.1.0",
+    "babel-plugin-styled-components": "^1.12.0",
     "dotenv": "^10.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
@@ -33,5 +37,59 @@
     "tailwindcss": "^2.2.17",
     "truffle": "^5.4.15",
     "web3modal": "^1.9.4"
+  },
+  "//": "This is our babel config, I prefer this over a .babelrc file",
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      },
+      "production": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      },
+      "test": {
+        "presets": [
+          [
+            "next/babel",
+            {
+              "preset-env": {
+                "modules": "commonjs"
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      }
+    }
   }
 }
