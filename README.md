@@ -1,5 +1,4 @@
 # nextjs-web3-nft-marketplace
 
-NextJS Web3 NFT Marketplace
-
+Tech Prophecies @Moises Sanabria & Fabiola Larios
 `npm install --force`

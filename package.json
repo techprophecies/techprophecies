@@ -34,7 +34,6 @@
     "ipfs-http-client": "^50.1.2",
     "postcss": "^8.3.9",
     "solc": "^0.8.4",
-    "tailwindcss": "^2.2.17",
     "truffle": "^5.4.15",
     "web3modal": "^1.9.4"
   },
