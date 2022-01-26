@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
 import Header from './Header';
 
@@ -109,6 +109,10 @@ const GlobalStyles = createGlobalStyle`
       font-family: 'TechProphecy';
       src: url('./assets/fonts/CloisterBlack.woff');
     }
+    @font-face {
+      font-family: 'TechProphecy-Regular';
+      src: url('./assets/fonts/LibreBaskerville-Regular.ttf');
+    }
     textarea:focus,
     input:focus {
       outline: none;
@@ -155,7 +159,7 @@ const InnerStyles = styled.div`
   padding: 2rem;
 `;
 
-export default function Page({ children }) {
+export default function Page({children}) {
   return (
     <div className="page-container">
       <GlobalStyles />
