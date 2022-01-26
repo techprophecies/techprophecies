@@ -69,7 +69,7 @@ const HeaderStyles = styled.header`
   }
 `;
 
-export default function Header({ children }) {
+export default function Header({children}) {
   return (
     <HeaderStyles>
       <div className="header-container">
@@ -77,7 +77,7 @@ export default function Header({ children }) {
           <div className="header-inner">
             <div className="menu-wrapper">
               <Logo />
-              <Search />
+              {/* <Search /> */}
               <Wallet />
               <Menu />
             </div>
