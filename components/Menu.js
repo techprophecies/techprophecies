@@ -7,11 +7,11 @@ const MenuStyles = styled.nav`
   flex-basis: 100%;
   @media (min-width: 52em) {
     display: flex;
-    position: absolute;
+    /* position: absolute;
     bottom: -46px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+    z-index: 2; */
   }
   a {
     font-family: var(--st--fonts-body);
@@ -33,7 +33,7 @@ const MenuStyles = styled.nav`
 export default function Menu() {
   return (
     <MenuStyles>
-      <Link href="/">Explore</Link>
+      <Link href="/">Metaverse</Link>
       <Link href="/">About</Link>
       <Link href="/mint">Mint</Link>
     </MenuStyles>
