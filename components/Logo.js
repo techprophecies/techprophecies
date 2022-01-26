@@ -29,7 +29,8 @@ export default function Logo() {
   return (
     <LogoStyles>
       <div className="logo-wrapper">
-        <img className="logo"
+        <img
+          className="logo"
           src="./assets/icons/tech-prophecies-logo.png"
           alt="tech prohecies nft"
         />
