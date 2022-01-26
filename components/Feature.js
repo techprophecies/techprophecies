@@ -130,6 +130,7 @@ const FeatureStyles = styled.section`
   }
   .feature-info-title h2 {
     color: white;
+    /* font-family: 'TechProphecy-Regular'; */
   }
   .feature-info-title h3 {
     box-sizing: border-box;
@@ -142,6 +143,7 @@ const FeatureStyles = styled.section`
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
     font-size: 36px;
+    text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
     line-height: 1;
     -webkit-letter-spacing: -0.02em;
     -moz-letter-spacing: -0.02em;
