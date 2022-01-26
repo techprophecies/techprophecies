@@ -16,6 +16,77 @@ const FeatureStyles = styled.section`
     gap: 0;
     min-height: calc(80vh - 86px);
   }
+  .feature-symbol {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    text-align: center;
+    /* background: radial-gradient(transparent, white); */
+    color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+  }
+  .feature-symbol-inner-wrapper {
+    width: 400px;
+    height: 400px;
+    top: 50px;
+    left: 50px;
+    position: absolute;
+    text-align: center;
+    color: white;
+    border-radius: 50%;
+    border: 1px solid white;
+  }
+  .feature-symbol span {
+    --units: 1;
+    --noOfItems: 13;
+    --rotationUnit: calc((1turn / var(--noOfItems)) * var(--units, 1));
+    position: absolute;
+    width: calc(100%);
+    height: calc(100%);
+    top: 0;
+    left: 0;
+    font-size: 36px;
+    transform: rotate(var(--rotationUnit));
+    transform-origin: center;
+
+    &:nth-child(2) {
+      --units: 2;
+    }
+    &:nth-child(3) {
+      --units: 3;
+    }
+    &:nth-child(4) {
+      --units: 4;
+    }
+    &:nth-child(5) {
+      --units: 5;
+    }
+    &:nth-child(6) {
+      --units: 6;
+    }
+    &:nth-child(7) {
+      --units: 7;
+    }
+    &:nth-child(8) {
+      --units: 8;
+    }
+    &:nth-child(9) {
+      --units: 9;
+    }
+    &:nth-child(10) {
+      --units: 10;
+    }
+    &:nth-child(11) {
+      --units: 11;
+    }
+    &:nth-child(12) {
+      --units: 12;
+    }
+    &:nth-child(13) {
+      --units: 13;
+    }
+  }
   @media screen and (min-width: 52em) {
     .feature-wrapper {
       padding-top: 64px;
@@ -44,6 +115,7 @@ const FeatureStyles = styled.section`
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+    position: relative;
   }
   @media screen and (min-width: 52em) {
     a.feature-asset-container {
@@ -174,7 +246,7 @@ export default function Feature() {
     <FeatureStyles>
       <div className="feature-wrapper">
         <a className="feature-asset-container" href="">
-          <div className="feature-asset-wrapper">
+          {/* <div className="feature-asset-wrapper">
             <div className="feature-asset-wrapper-inner">
               <video
                 src="https://res.cloudinary.com/react-graphql-store/video/upload/v1633133436/61_keyboard_over_man_with_arms_and_computer_head_udhzus.mp4"
@@ -184,6 +256,22 @@ export default function Feature() {
                 playsInline
               />
             </div>
+          </div> */}
+          <div className="feature-symbol">
+            <span>✢</span>
+            <span>✥</span>
+            <span>⋆</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>❂</span>
+            <span>❉</span>
+            <span>✯</span>
+            <span>✢</span>
+            <span>✥</span>
+            <span>⋆</span>
+            <span>✦</span>
+            <span>✧</span>
+            <div className="feature-symbol-inner-wrapper"></div>
           </div>
         </a>
         <div className="feature-info-container">
@@ -199,6 +287,7 @@ export default function Feature() {
           </div>
         </div>
       </div>
+      - i2Symbol
     </FeatureStyles>
   );
 }
