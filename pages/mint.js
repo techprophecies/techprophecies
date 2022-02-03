@@ -1,8 +1,16 @@
+import {useState, useEffect} from 'react';
+
+// CSS
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import web3 from "web3";
-import { create as ipfsHttpClient } from 'ipfs-http-client';
-import { useRouter } from 'next/router';
+
+// WEB3
+import web3 from 'web3';
+
+// HTTP
+import {create as ipfsHttpClient} from 'ipfs-http-client';
+
+// ROUTING
+import {useRouter} from 'next/router';
 
 const MintStyles = styled.div`
   display: none;
@@ -28,64 +36,52 @@ const MintStyles = styled.div`
     font-size: 16px;
   }
 
-  button:hover{
-
+  button:hover {
     cursor: cell;
   }
 
   .loading {
-
     color: white;
-
   }
-
-
- 
-
 `;
 
-
-const Web3 = require("web3");
+const Web3 = require('web3');
 let web3Metamask;
-let metamaskAccounts 
+let metamaskAccounts;
 let metamaskAccount;
 
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0');
 
-import {
-    nftaddress, nftmarketaddress
-  } from "../config";
+import {nftaddress, nftmarketaddress} from '../config';
 
-  import {
-    nftarray
-  } from "../nfts";
+import {nftarray} from '../nfts';
 
 import NeuralChapelNFTFactory from '../build/contracts/NeuralChapelNFTFactory.json';
 import NeuralChapelMarket from '../build/contracts/NeuralChapelMarket.json';
 
-
 const nftArray = nftarray.properties;
 
-export default function CreateItem (){
-    useEffect(() => {    
-        
-        //console.log(nftArray);
-        //console.log(nftArray[0].image)
-    
-    
-    },[]);
+export default function CreateItem() {
+  useEffect(() => {
+    //console.log(nftArray);
+    //console.log(nftArray[0].image)
+  }, []);
 
-    const randomNft = nftArray[Math.floor(Math.random() * nftArray.length)];
-    
-    //const url = nftArray[0].image;
-    const [loadingState, setLoadingState] = useState('loaded')
-    const [url, setUrl] = useState(null);
-    
-    const [nftMeta, updatenftMeta] = useState(JSON.stringify({
-        name: randomNft.name, description: randomNft.description, image: randomNft.image
-    }));
-    const router = useRouter();
-/*
+  const randomNft = nftArray[Math.floor(Math.random() * nftArray.length)];
+
+  //const url = nftArray[0].image;
+  const [loadingState, setLoadingState] = useState('loaded');
+  const [url, setUrl] = useState(null);
+
+  const [nftMeta, updatenftMeta] = useState(
+    JSON.stringify({
+      name: randomNft.name,
+      description: randomNft.description,
+      image: randomNft.image,
+    })
+  );
+  const router = useRouter();
+  /*
     const onChange = async (e)=>{
         const file = nftArray[0].image;
 
@@ -109,112 +105,93 @@ export default function CreateItem (){
 
     */
 
-    const createItem = async ()=>{
-         
-        
-        setLoadingState('not-loaded');
+  const createItem = async () => {
+    setLoadingState('not-loaded');
 
-        const connectAccount = async()=>{
+    const connectAccount = async () => {
+      try {
+        if (
+          typeof window !== 'undefined' &&
+          typeof window.ethereum !== 'undefined'
+        ) {
+          // We are in the browser and metamask is running.
 
-            try{
-
-            if (typeof window !== "undefined" && typeof window.ethereum !== "undefined") {
-                // We are in the browser and metamask is running.
-        
-                await window.ethereum.request({ method: "eth_requestAccounts" });
-                web3Metamask = new Web3(window.ethereum);
-                metamaskAccounts = await web3Metamask.eth.getAccounts();
-                metamaskAccount = metamaskAccounts[0];
-                //console.log("MetamaskAccount", metamaskAccount);
-        
-              } else {
-                // We are on the server *OR* the user is not running metamask
-                const provider = new Web3.providers.HttpProvider(
-                  "https://rinkeby.infura.io/v3/3be8ee0f25324e1cbcf6e35f00f5b3ce"
-                );
-                web3Metamask = new Web3(provider);
-              }
-        
-            } catch (err){
-        
-                console.log(err)
-        
-            }
-           
-
-           
-            }
-        
-        connectAccount();
-        
-        
-
-        //const { name, description, image } = nftMeta;
-
-        //setUrl(image);
- 
-
-        console.log("Data", nftMeta)
-
-
-        try{
-            const added = await client.add(nftMeta);
-            const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-            console.log("Url", url);
-            createSale(url)
-
-        } catch (error){
-            console.log("Error al subir el archivo: ", error);
-
+          await window.ethereum.request({method: 'eth_requestAccounts'});
+          web3Metamask = new Web3(window.ethereum);
+          metamaskAccounts = await web3Metamask.eth.getAccounts();
+          metamaskAccount = metamaskAccounts[0];
+          //console.log("MetamaskAccount", metamaskAccount);
+        } else {
+          // We are on the server *OR* the user is not running metamask
+          const provider = new Web3.providers.HttpProvider(
+            'https://rinkeby.infura.io/v3/3be8ee0f25324e1cbcf6e35f00f5b3ce'
+          );
+          web3Metamask = new Web3(provider);
         }
-
+      } catch (err) {
+        console.log(err);
+      }
     };
 
-    const createSale = async (url)=> {
+    connectAccount();
 
+    //const { name, description, image } = nftMeta;
 
-        
+    //setUrl(image);
 
-          const tokenContract = await new web3Metamask.eth.Contract(NeuralChapelNFTFactory.abi, nftaddress);
-          let transaction = await tokenContract.methods.createToken(url).send({from: metamaskAccount});
-          setLoadingState('loaded');
-          //console.log(transaction['events'])
-          //console.log("Token Id", transaction['events'].Transfer.returnValues[2]);
+    console.log('Data', nftMeta);
 
-          //let event = transaction.events[0];
-          //let value = event.args[2];
-          let tokenId = await transaction['events'].Transfer.returnValues[2];
+    try {
+      const added = await client.add(nftMeta);
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      console.log('Url', url);
+      createSale(url);
+    } catch (error) {
+      console.log('Error al subir el archivo: ', error);
+    }
+  };
 
-          //const price = web3.utils.toWei(0.01,'ether');
+  const createSale = async (url) => {
+    const tokenContract = await new web3Metamask.eth.Contract(
+      NeuralChapelNFTFactory.abi,
+      nftaddress
+    );
+    let transaction = await tokenContract.methods
+      .createToken(url)
+      .send({from: metamaskAccount});
+    setLoadingState('loaded');
+    //console.log(transaction['events'])
+    //console.log("Token Id", transaction['events'].Transfer.returnValues[2]);
 
-          const marketContract = await new web3Metamask.eth.Contract(NeuralChapelMarket.abi, nftmarketaddress);
-          //let listingPrice = await marketContract.methods.getListingPrice().call();
-          //let listingPrice = price.toString();
+    //let event = transaction.events[0];
+    //let value = event.args[2];
+    let tokenId = await transaction['events'].Transfer.returnValues[2];
 
-         // transaction = await marketContract.methods.createMarketItem(nftaddress, tokenId, price).send({from: metamaskAccount, value: listingPrice});
-         // console.log("Market Item", transaction)
-          //await transaction.wait();
-          router.push('/')  
-        
-        }
+    //const price = web3.utils.toWei(0.01,'ether');
 
-        if (loadingState === 'not-loaded') return (<MintStyles><h1 className="loading">Minting...</h1></MintStyles>)
+    const marketContract = await new web3Metamask.eth.Contract(
+      NeuralChapelMarket.abi,
+      nftmarketaddress
+    );
+    //let listingPrice = await marketContract.methods.getListingPrice().call();
+    //let listingPrice = price.toString();
 
-        return(
-            <MintStyles>
+    // transaction = await marketContract.methods.createMarketItem(nftaddress, tokenId, price).send({from: metamaskAccount, value: listingPrice});
+    // console.log("Market Item", transaction)
+    //await transaction.wait();
+    router.push('/');
+  };
 
+  if (loadingState === 'not-loaded')
+    return (
+      <MintStyles>
+        <h1 className="loading">Minting...</h1>
+      </MintStyles>
+    );
 
-                    <button
-                    
-                    onClick={createItem} 
-                    >
-                    Mint
-                    </button>
-
-            
-
-            </MintStyles>
-        )
-
-
+  return (
+    <MintStyles>
+      <button onClick={createItem}>Mint</button>
+    </MintStyles>
+  );
 }
