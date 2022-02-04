@@ -63,23 +63,23 @@ module.exports = {
           mnemonic: {
             phrase: process.env.DEV_MNEMONIC,
           },
-          providerOrUrl: `https://rinkeby.infura.io/v3/${infuraKey}`,
+          providerOrUrl: `wss://rinkeby.infura.io/ws/v3/${infuraKey}`,
           numberOfAddresses: 1,
           shareNonce: true,
         }),
       network_id: '4',
       networkCheckTimeout: 999999,
     },
-    /*
+    
     mainnet: {
-      provider: () => new HDWalletProvider(process.env.MAINNET_MNEMONIC, "https://mainnet.infura.io/v3/" + infuraProjectId),
+      provider: () => new HDWalletProvider(process.env.MAINNET_MNEMONIC, `wss://mainnet.infura.io/ws/v3/${infuraKey}`),
       network_id: 1,       // mainnet
       gas: 5500000,  
       gasPrice: 2000000000,  // check https://ethgasstation.info/
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)
       timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
       skipDryRun: false     // Skip dry run before migrations? (default: false for public nets )
-    }, */
+    },
   },
 
   // Set default mocha options here, use special reporters etc.

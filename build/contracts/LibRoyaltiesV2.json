@@ -1,0 +1,205 @@
+{
+  "contractName": "LibRoyaltiesV2",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/@rarible/royalties/contracts/LibRoyaltiesV2.sol\":\"LibRoyaltiesV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/@rarible/royalties/contracts/LibRoyaltiesV2.sol\":{\"keccak256\":\"0xaa2b9ade66b92bc2b4495178662745688b3a16116aeac9d1cd906beecf30cf17\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://188275c7675586ccd271a4833d6b55aac2491d1c68987a8534537bf10f2549e8\",\"dweb:/ipfs/QmZLxN5RM2dGtNEuoNpJvjuRizePi2UoMZq4YzV1YkXwZ3\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122052ab067aa48276aabd6bc13757c427a91989e6d30a2a8af3081ef29926a1556864736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122052ab067aa48276aabd6bc13757c427a91989e6d30a2a8af3081ef29926a1556864736f6c63430008040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "58:181:14:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "58:181:14:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;library LibRoyaltiesV2 {\r\n     /*\r\n     * bytes4(keccak256('getRoyalties(LibAsset.AssetType)')) == 0xcad96cca\r\n     */\r\n     bytes4 constant _INTERFACE_ID_ROYALTIES = 0xcad96cca;\r\n}",
+  "sourcePath": "E:\\Chamba\\Moises Sanabria\\techprophecies\\contracts\\@rarible\\royalties\\contracts\\LibRoyaltiesV2.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/@rarible/royalties/contracts/LibRoyaltiesV2.sol",
+    "exportedSymbols": {
+      "LibRoyaltiesV2": [
+        1910
+      ]
+    },
+    "id": 1911,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1906,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "35:23:14"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1910,
+        "linearizedBaseContracts": [
+          1910
+        ],
+        "name": "LibRoyaltiesV2",
+        "nameLocation": "66:14:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1909,
+            "mutability": "constant",
+            "name": "_INTERFACE_ID_ROYALTIES",
+            "nameLocation": "199:23:14",
+            "nodeType": "VariableDeclaration",
+            "scope": 1910,
+            "src": "183:52:14",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes4",
+              "typeString": "bytes4"
+            },
+            "typeName": {
+              "id": 1907,
+              "name": "bytes4",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:6:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes4",
+                "typeString": "bytes4"
+              }
+            },
+            "value": {
+              "hexValue": "30786361643936636361",
+              "id": 1908,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "225:10:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_3403246794_by_1",
+                "typeString": "int_const 3403246794"
+              },
+              "value": "0xcad96cca"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1911,
+        "src": "58:181:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "35:204:14"
+  },
+  "legacyAST": {
+    "absolutePath": "project:/contracts/@rarible/royalties/contracts/LibRoyaltiesV2.sol",
+    "exportedSymbols": {
+      "LibRoyaltiesV2": [
+        1910
+      ]
+    },
+    "id": 1911,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1906,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "35:23:14"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 1910,
+        "linearizedBaseContracts": [
+          1910
+        ],
+        "name": "LibRoyaltiesV2",
+        "nameLocation": "66:14:14",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "id": 1909,
+            "mutability": "constant",
+            "name": "_INTERFACE_ID_ROYALTIES",
+            "nameLocation": "199:23:14",
+            "nodeType": "VariableDeclaration",
+            "scope": 1910,
+            "src": "183:52:14",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes4",
+              "typeString": "bytes4"
+            },
+            "typeName": {
+              "id": 1907,
+              "name": "bytes4",
+              "nodeType": "ElementaryTypeName",
+              "src": "183:6:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes4",
+                "typeString": "bytes4"
+              }
+            },
+            "value": {
+              "hexValue": "30786361643936636361",
+              "id": 1908,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "number",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "225:10:14",
+              "typeDescriptions": {
+                "typeIdentifier": "t_rational_3403246794_by_1",
+                "typeString": "int_const 3403246794"
+              },
+              "value": "0xcad96cca"
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 1911,
+        "src": "58:181:14",
+        "usedErrors": []
+      }
+    ],
+    "src": "35:204:14"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-12-16T03:28:24.397Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

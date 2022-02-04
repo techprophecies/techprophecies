@@ -60,8 +60,7 @@ import {
     nftarray
   } from "../nfts";
 
-import NeuralChapelNFTFactory from '../build/contracts/NeuralChapelNFTFactory.json';
-import NeuralChapelMarket from '../build/contracts/NeuralChapelMarket.json';
+import NeuralChapelNFTFactory from '../build/contracts/TechpropheciesNFTFactory.json';
 
 
 const nftArray = nftarray.properties;
@@ -78,8 +77,9 @@ export default function CreateItem (){
     const randomNft = nftArray[Math.floor(Math.random() * nftArray.length)];
     
     //const url = nftArray[0].image;
-    const [loadingState, setLoadingState] = useState('loaded')
+    const [loadingState, setLoadingState] = useState('loaded');
     const [url, setUrl] = useState(null);
+    const [addressRoyalties, updateAddressRoyalties] = useState('');
     
     const [nftMeta, updatenftMeta] = useState(JSON.stringify({
         name: randomNft.name, description: randomNft.description, image: randomNft.image
@@ -122,9 +122,8 @@ export default function CreateItem (){
                 // We are in the browser and metamask is running.
         
                 await window.ethereum.request({ method: "eth_requestAccounts" });
-                web3Metamask = new Web3(window.ethereum);
-                metamaskAccounts = await web3Metamask.eth.getAccounts();
-                metamaskAccount = metamaskAccounts[0];
+                
+
                 //console.log("MetamaskAccount", metamaskAccount);
         
               } else {
@@ -140,15 +139,16 @@ export default function CreateItem (){
                 console.log(err)
         
             }
-           
-
+ 
            
             }
         
         connectAccount();
         
         
-
+        web3Metamask = new Web3(window.ethereum);
+        metamaskAccounts = await web3Metamask.eth.getAccounts();
+        metamaskAccount = metamaskAccounts[0];
         //const { name, description, image } = nftMeta;
 
         //setUrl(image);
@@ -187,14 +187,17 @@ export default function CreateItem (){
 
           //const price = web3.utils.toWei(0.01,'ether');
 
-          const marketContract = await new web3Metamask.eth.Contract(NeuralChapelMarket.abi, nftmarketaddress);
-          //let listingPrice = await marketContract.methods.getListingPrice().call();
-          //let listingPrice = price.toString();
+          //router.push('/')  
+        
+        }
 
-         // transaction = await marketContract.methods.createMarketItem(nftaddress, tokenId, price).send({from: metamaskAccount, value: listingPrice});
-         // console.log("Market Item", transaction)
-          //await transaction.wait();
-          router.push('/')  
+        const setRoyalties = async (url)=> {
+
+
+        
+
+          const tokenContract = await new web3Metamask.eth.Contract(NeuralChapelNFTFactory.abi, nftaddress);
+          await tokenContract.methods._setRoyalties(2, addressRoyalties, 1000).send();
         
         }
 
@@ -209,6 +212,15 @@ export default function CreateItem (){
                     onClick={createItem} 
                     >
                     Mint
+                    </button>
+
+                    
+                    <input type="text" onChange={e => updateAddressRoyalties(e.target.value )} />
+                    <button
+                    
+                    onClick={setRoyalties} 
+                    >
+                    Set Royalties
                     </button>
 
             
