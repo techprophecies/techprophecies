@@ -4,7 +4,7 @@ import NProgress from "nprogress";
 let timer;
 let state;
 let activeRequests = 0;
-const delay = 500;
+const delay = 250;
 
 // please see this article for where I referenced these methods: https://dev.to/vvo/show-a-top-progress-bar-on-fetch-and-router-events-in-next-js-4df3
 function load() {
@@ -32,7 +32,7 @@ function stop() {
 
 Router.events.on("routeChangeStart", load);
 Router.events.on("routeChangeComplete", stop);
-Router.events.on("routeChangeError", stop);
+Router.events.on("routeChangeError", load);
 
 const originalFetch = window.fetch;
 window.fetch = async function (...args) {
