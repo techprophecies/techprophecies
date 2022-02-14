@@ -11,6 +11,7 @@ const BannerStyles = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 100px 0 0 0;
   height: 600px;
   div {
     position: relative;

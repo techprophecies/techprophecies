@@ -7,10 +7,12 @@ import Image from 'next/image';
 
 // CONSTANTS
 import {artworks} from '../artworks';
+import metadata from '../constants/metadata';
 
 // COMPONENTS
 import GridHeader from './GridHeader';
 import Card from './Card';
+import HoverVideoPlayer from 'react-hover-video-player';
 
 const GridStyles = styled.section`
   box-sizing: border-box;
@@ -88,18 +90,44 @@ const GridStyles = styled.section`
 `;
 
 export default function Grid() {
-  //  console.log(artworks);
+  console.log(metadata.properties);
+
+  const nfts = metadata.properties;
 
   return (
     <GridStyles>
       <GridHeader />
       <div className="grid-wrapper">
         <div className="grid-wrapper-inner">
-          {artworks.map((img, i) => (
+          {nfts.map((img, i) => (
             <>
               {i < 8 ? (
                 <div key={i}>
-                  <Image alt={i} width="512" height="512" src={img} />
+                  {/* <Image alt={i} width="512" height="512" src={img} /> */}
+                  <Card />
+                  {/* <HoverVideoPlayer
+                    key={`nft-${i}`}
+                    videoSrc={
+                      'https://res.cloudinary.com/react-graphql-store/video/upload/v1633390167/32_hand-touch-world_ze4s5n.mp4'
+                    }
+                    pausedOverlay={
+                      <img
+                        src={img}
+                        alt=""
+                        style={{
+                          // Make the image expand to cover the video's dimensions
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                        }}
+                      />
+                    }
+                    loadingOverlay={
+                      <div className="loading-overlay">
+                        <div className="loading-spinner" />
+                      </div>
+                    }
+                  /> */}
                 </div>
               ) : null}
             </>
