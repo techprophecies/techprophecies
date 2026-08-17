@@ -1,8 +1,28 @@
-import React from 'react';
-import Link from 'next/link';
+import {useCallback, useEffect, useRef, useState} from 'react';
+import {useRouter} from 'next/router';
 import styled from 'styled-components';
 
 import Symbol from './Symbol';
+import Background from './Background';
+
+export const HeroFold = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+  background: #000;
+
+  header {
+    flex-shrink: 0;
+  }
+
+  #banner {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+  }
+`;
 
 const BannerStyles = styled.section`
   z-index: 4;
@@ -11,21 +31,22 @@ const BannerStyles = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  height: 100svh;
-  min-height: 100svh;
   overflow: hidden;
-  .space-frame {
+  padding-bottom: 72px;
+  --px: 0;
+  --py: 0;
+  background: #000;
+
+  .hero-sky {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-    pointer-events: none;
     z-index: 0;
+    pointer-events: none;
   }
+
   .enter-space {
     position: absolute;
-    bottom: max(24px, env(safe-area-inset-bottom));
+    bottom: max(16px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 600;
@@ -35,14 +56,23 @@ const BannerStyles = styled.section`
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    text-decoration: none;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    padding: 12px 20px;
+    min-height: 44px;
+    padding: 12px 22px;
     pointer-events: auto;
+    background: rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    appearance: none;
+    transition: color 180ms ease, border-color 180ms ease, box-shadow 180ms ease,
+      background 180ms ease;
   }
-  .enter-space:hover {
+  .enter-space:hover,
+  .enter-space:focus-visible {
     color: #00fff7;
     border-color: #00fff7;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 0 1px #00fff7, 0 0 22px rgba(0, 255, 247, 0.45);
+    outline: none;
   }
   div {
     position: relative;
@@ -68,20 +98,9 @@ const BannerStyles = styled.section`
     justify-content: center;
     flex: 1;
   }
-  div.video-wrapper {
-    background: green;
-    overflow: hidden;
-    height: 500px;
-  }
-  div.video-wrapper div[data-testid='hover-video-player-container'] {
-    width: 100%;
-  }
-  div.video-wrapper video {
-    width: 100%;
-  }
 
   .banner-heading {
-    font-size: clamp(28px, 9vw, 80px);
+    font-size: clamp(22px, 8vw, 80px);
     font-family: 'TechProphecy', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -98,7 +117,6 @@ const BannerStyles = styled.section`
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    /* background: linear-gradient(#262626, white, #262626); */
     -webkit-background-clip: text;
     color: transparent;
   }
@@ -190,19 +208,155 @@ const BannerStyles = styled.section`
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: min(500px, 78vw);
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @media (max-height: 520px) and (orientation: landscape) {
+    .text-wrapper {
+      height: clamp(72px, 28vh, 140px);
+    }
+    .banner-heading {
+      font-size: clamp(18px, 6vh, 42px);
+    }
+    .enter-space {
+      bottom: max(8px, env(safe-area-inset-bottom));
+    }
+  }
+
+  .enter-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    background: #000;
+    pointer-events: none;
+    animation: enter-fade 700ms ease forwards;
+  }
+  .enter-overlay .ring {
+    width: min(160px, 28vw);
+    height: min(160px, 28vw);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 24px rgba(0, 255, 247, 0.45),
+      inset 0 0 24px rgba(0, 255, 247, 0.2);
+    animation: enter-pulse 700ms ease-in-out infinite;
+  }
+  .enter-overlay .line {
+    width: min(220px, 50vw);
+    height: 1px;
+    background: #00fff7;
+    box-shadow: 0 0 12px rgba(0, 255, 247, 0.7);
+  }
+  .enter-overlay p {
+    margin: 0;
+    color: #fff;
+    font-family: 'TechProphecy', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+  }
+  @keyframes enter-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes enter-pulse {
+    0%,
+    100% {
+      transform: scale(0.94);
+      opacity: 0.7;
+    }
+    50% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .enter-overlay,
+    .enter-overlay .ring {
+      animation: none;
+    }
   }
 `;
 
+const ENTER_MS = 700;
+
 export default function Banner() {
+  const router = useRouter();
+  const root = useRef(null);
+  const [entering, setEntering] = useState(false);
+
+  const setParallax = useCallback((clientX, clientY) => {
+    const el = root.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    if (!rect.width || !rect.height) return;
+    const x = (clientX - rect.left) / rect.width - 0.5;
+    const y = (clientY - rect.top) / rect.height - 0.5;
+    el.style.setProperty('--px', x.toFixed(3));
+    el.style.setProperty('--py', y.toFixed(3));
+  }, []);
+
+  const onMove = useCallback(
+    (event) => setParallax(event.clientX, event.clientY),
+    [setParallax],
+  );
+
+  const onLeave = useCallback(() => {
+    const el = root.current;
+    if (!el) return;
+    el.style.setProperty('--px', '0');
+    el.style.setProperty('--py', '0');
+  }, []);
+
+  const go = useCallback(() => {
+    router.push('/metaverse');
+  }, [router]);
+
+  const onEnter = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (entering) return;
+      const reduce =
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        go();
+        return;
+      }
+      setEntering(true);
+    },
+    [entering, go],
+  );
+
+  useEffect(() => {
+    if (!entering) return undefined;
+    const timer = window.setTimeout(go, ENTER_MS);
+    return () => window.clearTimeout(timer);
+  }, [entering, go]);
+
   return (
-    <BannerStyles id="banner">
-      <iframe
-        className="space-frame"
-        src="/metaverse/index.html"
-        title="Tech Prophecies space"
-        tabIndex={-1}
-      />
+    <BannerStyles
+      id="banner"
+      ref={root}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+    >
+      <div className="hero-sky">
+        <Background />
+      </div>
       <div className="text-wrapper">
         <div>
           <h3 className="banner-heading shine">TECH PROPHECIES</h3>
@@ -217,9 +371,20 @@ export default function Banner() {
       <div className="symbol-wrapper">
         <Symbol />
       </div>
-      <Link href="/metaverse">
-        <a className="enter-space">Enter space</a>
-      </Link>
+      <button
+        type="button"
+        className="enter-space"
+        onClick={onEnter}
+      >
+        Enter space
+      </button>
+      {entering ? (
+        <div className="enter-overlay" aria-live="assertive">
+          <span className="ring" aria-hidden="true" />
+          <span className="line" aria-hidden="true" />
+          <p>Enter the space</p>
+        </div>
+      ) : null}
     </BannerStyles>
   );
 }

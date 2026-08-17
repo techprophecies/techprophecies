@@ -3,6 +3,7 @@ import Head from 'next/head';
 import {useRouter} from 'next/router';
 
 import {Page} from '../components';
+import SiteLoader from '../components/SiteLoader';
 
 import 'nprogress/nprogress.css';
 import '../components/styles/nprogress.css';
@@ -17,9 +18,10 @@ const TopProgressBar = dynamic(
 export default function MyApp({Component, pageProps}) {
   const router = useRouter();
   const bare = router.pathname === '/metaverse';
+  const fold = router.pathname === '/';
 
   return (
-    <Page bare={bare}>
+    <Page bare={bare} fold={fold}>
       <Head>
         <title>Tech Prophecies</title>
         <meta
@@ -28,6 +30,7 @@ export default function MyApp({Component, pageProps}) {
         />
       </Head>
       <TopProgressBar />
+      <SiteLoader skipSplash={bare} />
       <Component {...pageProps} />
     </Page>
   );

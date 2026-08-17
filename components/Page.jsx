@@ -242,11 +242,11 @@ const InnerStyles = styled.div`
   padding: 0;
 `;
 
-export default function Page({children, bare}) {
+export default function Page({children, bare, fold}) {
   return (
     <div className="page-container">
       <GlobalStyles />
-      {!bare && <Header />}
+      {!bare && !fold && <Header />}
       {bare ? children : <InnerStyles>{children}</InnerStyles>}
     </div>
   );

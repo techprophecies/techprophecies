@@ -25,10 +25,55 @@ function fillProphecyHud(key) {
   hud.classList.add('is-on');
 }
 
+function setHudSound(on) {
+  const el = document.querySelector('#prophecy-hud .sound');
+  if (!el) return;
+  el.textContent = on ? 'Sound on' : '';
+  el.classList.toggle('is-on', !!on);
+}
+
 function clearProphecyHud() {
   const hud = document.getElementById('prophecy-hud');
   if (!hud) return;
   hud.classList.remove('is-on');
+  setHudSound(false);
+}
+
+function videoUrlForKey(key) {
+  const data = window.PROPHECIES && window.PROPHECIES[key];
+  if (!data || !window.VIDEOS) return '';
+  return window.VIDEOS[data.n] || window.VIDEOS[String(data.n)] || '';
+}
+
+function armCloudinaryVideo(video, key, muted) {
+  const url = videoUrlForKey(key);
+  if (!url || !video) return false;
+  const mute = muted !== false;
+  video.muted = mute;
+  video.defaultMuted = mute;
+  video.loop = true;
+  video.playsInline = true;
+  video.setAttribute('playsinline', '');
+  video.preload = 'none';
+  if (video.getAttribute('data-src') !== url) {
+    video.setAttribute('data-src', url);
+    video.src = url;
+    if (typeof video.load === 'function') video.load();
+  }
+  return true;
+}
+
+function videoUsable(video) {
+  if (!video || typeof video.play !== 'function') return false;
+  if (video.error) return false;
+  if (video.networkState === 3) return false;
+  return video.readyState >= 2;
+}
+
+function playVideo(video) {
+  if (!video || typeof video.play !== 'function') return;
+  const play = video.play();
+  if (play && typeof play.catch === 'function') play.catch(function () {});
 }
 
 AFRAME.registerComponent('raycaster-img', {
@@ -44,30 +89,63 @@ AFRAME.registerComponent('raycaster-img', {
     const videoVisible = this.data.visible;
     const restScale = el.getAttribute('scale') || {x: 1, y: 1, z: 1};
     const key = prophecyKeyFromEl(el, this.data.key);
+    let playToken = 0;
+    let looking = false;
 
-    function videoUsable(video) {
-      if (!video || typeof video.play !== 'function') return false;
-      if (video.error) return false;
-      if (video.networkState === 3) return false;
-      return video.readyState >= 2;
+    function showClip() {
+      if (videoVisible) videoVisible.setAttribute('visible', 'true');
+      el.setAttribute('visible', 'false');
     }
 
-    this.el.addEventListener('mouseenter', () => {
+    function startMutedPreview() {
+      const token = ++playToken;
+      looking = true;
       el.setAttribute('scale', '1.06 1.06 1.06');
       fillProphecyHud(key);
+      setHudSound(false);
 
-      if (videoUsable(videoToPlay)) {
-        const play = videoToPlay.play();
-        if (play && typeof play.catch === 'function') play.catch(function () {});
-        if (videoVisible) videoVisible.setAttribute('visible', 'true');
-        el.setAttribute('visible', 'false');
+      const armed = armCloudinaryVideo(videoToPlay, key, true);
+      if (!armed) {
+        el.setAttribute('material', 'opacity', 0.92);
         return;
       }
 
+      if (videoUsable(videoToPlay)) {
+        playVideo(videoToPlay);
+        showClip();
+        return;
+      }
+
+      const onReady = function () {
+        if (token !== playToken || !looking) return;
+        videoToPlay.removeEventListener('canplay', onReady);
+        playVideo(videoToPlay);
+        showClip();
+      };
+      videoToPlay.addEventListener('canplay', onReady);
       el.setAttribute('material', 'opacity', 0.92);
+    }
+
+    this.el.addEventListener('mouseenter', startMutedPreview);
+
+    this.el.addEventListener('click', () => {
+      looking = true;
+      el.setAttribute('scale', '1.06 1.06 1.06');
+      fillProphecyHud(key);
+
+      const armed = armCloudinaryVideo(videoToPlay, key, false);
+      if (!armed || !videoToPlay) return;
+
+      videoToPlay.muted = false;
+      videoToPlay.defaultMuted = false;
+      playVideo(videoToPlay);
+      showClip();
+      setHudSound(true);
     });
 
     this.el.addEventListener('mouseleave', () => {
+      playToken += 1;
+      looking = false;
       el.setAttribute(
         'scale',
         restScale.x + ' ' + restScale.y + ' ' + restScale.z,
@@ -77,9 +155,12 @@ AFRAME.registerComponent('raycaster-img', {
       clearProphecyHud();
 
       if (videoToPlay && typeof videoToPlay.pause === 'function') {
+        videoToPlay.muted = true;
+        videoToPlay.defaultMuted = true;
         videoToPlay.pause();
-        videoToPlay.currentTime = 0;
-        if (typeof videoToPlay.load === 'function') videoToPlay.load();
+        try {
+          videoToPlay.currentTime = 0;
+        } catch (error) {}
       }
       if (videoVisible) videoVisible.setAttribute('visible', 'false');
     });

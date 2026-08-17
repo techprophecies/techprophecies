@@ -54,6 +54,7 @@ const GridStyles = styled.section`
   @media (min-width: 96em) {
     .grid-wrapper-inner {
       grid-template-columns: repeat(5, 1fr);
+      gap: 40px 32px;
     }
   }
 `;
@@ -78,6 +79,7 @@ export default function Grid({activeIndex, onOpen, onClose, onPrev, onNext}) {
               key={work.id}
               id={work.id}
               image={work.image}
+              video={work.video}
               name={work.name}
               description={work.description}
               rarity={work.rarity}

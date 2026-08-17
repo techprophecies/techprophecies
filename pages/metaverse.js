@@ -1,8 +1,9 @@
 import Link from 'next/link';
-import {useCallback, useRef} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import styled from 'styled-components';
 
 import EnterVr from '../components/EnterVr';
+import MarkLoader from '../components/MarkLoader';
 
 const FrameStyles = styled.div`
   position: fixed;
@@ -13,6 +14,17 @@ const FrameStyles = styled.div`
     height: 100%;
     border: 0;
     display: block;
+    opacity: 0;
+    transition: opacity 480ms ease;
+  }
+  iframe.is-on {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    iframe {
+      opacity: 1;
+      transition: none;
+    }
   }
   .overlay {
     position: absolute;
@@ -91,10 +103,21 @@ const FrameStyles = styled.div`
     object-fit: contain;
     display: block;
   }
+
+  .chapel-wait {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
 `;
 
 export default function MetaversePage() {
   const frame = useRef(null);
+  const [ready, setReady] = useState(false);
 
   const enterVr = useCallback(() => {
     const iframe = frame.current;
@@ -107,6 +130,21 @@ export default function MetaversePage() {
     } catch (error) {
       // Same-origin only; native A-Frame control remains as fallback.
     }
+  }, []);
+
+  const onFrameLoad = useCallback(() => {
+    const iframe = frame.current;
+    const scene =
+      iframe && iframe.contentDocument && iframe.contentDocument.querySelector('a-scene');
+    if (!scene) {
+      setReady(true);
+      return;
+    }
+    if (scene.hasLoaded) {
+      setReady(true);
+      return;
+    }
+    scene.addEventListener('loaded', () => setReady(true), {once: true});
   }, []);
 
   return (
@@ -125,11 +163,18 @@ export default function MetaversePage() {
         </Link>
       </div>
       <EnterVr onClick={enterVr} label="Enter VR" />
+      {!ready ? (
+        <div className="chapel-wait">
+          <MarkLoader size="lg" pulse />
+        </div>
+      ) : null}
       <iframe
         ref={frame}
+        className={ready ? 'is-on' : undefined}
         src="/metaverse/index.html"
         title="Tech Prophecies space"
         allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
+        onLoad={onFrameLoad}
       />
     </FrameStyles>
   );

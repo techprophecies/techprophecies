@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import {works} from '../works';
 import Background from './Background';
+import Video from './Video';
 
 const FeatureStyles = styled.section`
   position: relative;
@@ -47,6 +48,14 @@ const FeatureStyles = styled.section`
     }
   }
 
+  @media (min-width: 96em) {
+    .feature-wrapper {
+      max-width: 1920px;
+      gap: 88px;
+      padding: 112px 32px;
+    }
+  }
+
   .feature-still {
     display: block;
     width: 100%;
@@ -84,7 +93,8 @@ const FeatureStyles = styled.section`
     outline-color: rgba(0, 255, 247, 0.55);
   }
 
-  img {
+  img,
+  .hover-clip {
     width: 100%;
     height: auto;
     display: block;
@@ -95,8 +105,26 @@ const FeatureStyles = styled.section`
     transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
+  .hover-clip {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .hover-clip > div,
+  .hover-clip video,
+  .hover-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .feature-still:hover img,
-  .feature-still:focus-visible img {
+  .feature-still:focus-visible img,
+  .feature-still:hover .hover-clip,
+  .feature-still:focus-visible .hover-clip {
     transform: scale(1.04);
   }
 
@@ -158,11 +186,17 @@ const FeatureStyles = styled.section`
     color: white;
     font-family: 'TechProphecy', serif;
     font-weight: 200;
-    font-size: clamp(22px, 4.6vw, 56px);
+    font-size: clamp(18px, 5.2vw, 36px);
     line-height: 1.15;
     letter-spacing: -0.02em;
     text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
     max-width: 18em;
+  }
+
+  @media (min-width: 52em) {
+    .verse {
+      font-size: clamp(22px, 4.2vw, 52px);
+    }
   }
 
   @media (hover: none) {
@@ -172,6 +206,9 @@ const FeatureStyles = styled.section`
     }
     .feature-still {
       transform: none;
+    }
+    .hover-clip {
+      display: none;
     }
   }
 
@@ -244,6 +281,11 @@ export default function Feature({onOpen}) {
         >
           <div className="frame">
             <img src={featured.image} alt="" />
+            {featured.video ? (
+              <span className="hover-clip">
+                <Video videoSrc={featured.video} poster={featured.image} />
+              </span>
+            ) : null}
             <span className="open-hint">Open</span>
           </div>
         </button>

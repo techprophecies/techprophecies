@@ -9,7 +9,8 @@
     "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
     "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-videos": "node scripts/sync-videos.js"
   },
   "dependencies": {
     "next": "^11.1.2",

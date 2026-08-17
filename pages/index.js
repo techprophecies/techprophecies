@@ -1,6 +1,10 @@
 import {useCallback, useState} from 'react';
 
-import {Feature, Grid, Footer, Banner} from '../components';
+import Header from '../components/Header';
+import Banner, {HeroFold} from '../components/Banner';
+import Feature from '../components/Feature';
+import Grid from '../components/Grid';
+import Footer from '../components/Footer';
 import {works} from '../works';
 
 export default function IndexPage() {
@@ -20,7 +24,10 @@ export default function IndexPage() {
 
   return (
     <>
-      <Banner />
+      <HeroFold>
+        <Header />
+        <Banner />
+      </HeroFold>
       <Feature onOpen={setActiveIndex} />
       <Grid
         activeIndex={activeIndex}
