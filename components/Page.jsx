@@ -158,8 +158,27 @@ const GlobalStyles = createGlobalStyle`
       justify-content: space-between;
       align-items: center;
       flex-wrap: nowrap;
-      gap: 16px;
+      gap: 12px;
       min-height: 44px;
+    }
+    @media (max-width: 40em) {
+      header .menu-wrapper {
+        flex-wrap: wrap;
+      }
+      header nav {
+        flex-wrap: wrap;
+        width: auto;
+        max-width: calc(100% - 56px);
+      }
+      header nav a {
+        font-size: 12px;
+        padding: 8px 8px;
+        letter-spacing: 0.06em;
+      }
+      header nav a:hover,
+      header nav a:focus-visible {
+        letter-spacing: 0.08em;
+      }
     }
     header nav {
       display: flex;

@@ -25,13 +25,20 @@ const HeaderStyles = styled.header`
     margin: 0;
     min-width: 0;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1760px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 16px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(12px, env(safe-area-inset-top));
     padding-bottom: 8px;
+  }
+  @media (min-width: 52em) {
+    .header-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 16px;
+    }
   }
   .menu-wrapper {
     margin: 0;
@@ -40,10 +47,9 @@ const HeaderStyles = styled.header`
     justify-content: space-between;
     flex-wrap: nowrap;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
     position: relative;
     min-height: 44px;
-    max-height: 56px;
   }
   .bar {
     border-bottom: 10px solid var(--black, black);

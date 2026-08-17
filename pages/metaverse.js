@@ -13,14 +13,22 @@ const FrameStyles = styled.div`
   }
   .overlay {
     position: absolute;
-    top: 16px;
-    left: 16px;
-    right: 16px;
+    top: max(12px, env(safe-area-inset-top));
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 4px 8px;
     pointer-events: none;
+  }
+  @media (max-width: 40em) {
+    .overlay a {
+      font-size: 12px;
+      padding: 8px 8px;
+      letter-spacing: 0.06em;
+    }
   }
   .overlay a {
     pointer-events: auto;

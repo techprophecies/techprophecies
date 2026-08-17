@@ -22,6 +22,10 @@ export default function MyApp({Component, pageProps}) {
     <Page bare={bare}>
       <Head>
         <title>Tech Prophecies</title>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
       </Head>
       <TopProgressBar />
       <Component {...pageProps} />

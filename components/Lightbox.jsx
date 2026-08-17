@@ -10,7 +10,13 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 16px;
+  padding-top: max(16px, env(safe-area-inset-top));
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+
+  @media (min-width: 64em) {
+    padding: 24px;
+  }
 `;
 
 const Panel = styled.div`
@@ -49,7 +55,7 @@ const Panel = styled.div`
   h2 {
     margin: 0 0 16px;
     color: #fff;
-    font-size: 1.8rem;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
     font-weight: 200;
     font-family: 'TechProphecy', serif;
     letter-spacing: 0.06em;
@@ -61,8 +67,24 @@ const Panel = styled.div`
   p {
     margin: 0;
     line-height: 1.55;
-    font-size: 1.15rem;
+    font-size: clamp(1rem, 2vw, 1.15rem);
     color: #cfcfcf;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 0;
+  }
+
+  .tags span {
+    color: #00fff7;
+    border: 1px solid rgba(0, 255, 247, 0.35);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
   }
 
   .close,
@@ -103,8 +125,18 @@ const Panel = styled.div`
   }
 
   @media (max-width: 63.99em) {
+    padding-top: 48px;
     .nav {
-      display: none;
+      top: auto;
+      bottom: 8px;
+      transform: none;
+      display: inline-flex;
+    }
+    .nav.prev {
+      left: 8px;
+    }
+    .nav.next {
+      right: 8px;
     }
   }
 `;
@@ -165,6 +197,15 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
           <p className="number">{number}</p>
           <h2>{work.name}</h2>
           {work.description ? <p>{work.description}</p> : null}
+          {work.rarity || work.subject || work.type || work.element || work.entropy ? (
+            <div className="tags">
+              {work.rarity ? <span>{work.rarity}</span> : null}
+              {work.type ? <span>{work.type}</span> : null}
+              {work.element ? <span>{work.element}</span> : null}
+              {work.entropy ? <span>{work.entropy}</span> : null}
+              {work.subject ? <span>{work.subject}</span> : null}
+            </div>
+          ) : null}
         </div>
       </Panel>
     </Overlay>,

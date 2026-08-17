@@ -5,7 +5,7 @@ const FooterStyles = styled.footer`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px 24px 64px;
+  padding: 48px 16px max(64px, env(safe-area-inset-bottom));
   color: #8a8a8a;
   font-family: 'TechProphecy', serif;
   font-size: 15px;

@@ -8,7 +8,7 @@ const FeatureStyles = styled.section`
   position: relative;
   z-index: 5;
   overflow: hidden;
-  min-height: calc(80vh - 86px);
+  min-height: auto;
   --px: 0;
   --py: 0;
 
@@ -26,16 +26,24 @@ const FeatureStyles = styled.section`
     align-items: center;
     max-width: 1600px;
     margin: 0 auto;
-    min-height: calc(80vh - 86px);
-    padding: 72px 24px;
+    min-height: 0;
+    padding: 40px 16px;
   }
 
   @media (min-width: 52em) {
+    min-height: calc(80vh - 86px);
     .feature-wrapper {
       grid-template-columns: 1.05fr 0.95fr;
       gap: 48px;
-      padding-top: 96px;
-      padding-bottom: 96px;
+      min-height: calc(80vh - 86px);
+      padding: 96px 24px;
+    }
+  }
+
+  @media (min-width: 80em) {
+    .feature-wrapper {
+      max-width: 1760px;
+      gap: 72px;
     }
   }
 
@@ -137,7 +145,7 @@ const FeatureStyles = styled.section`
     margin: 0 0 20px;
     color: #fff;
     font-family: 'TechProphecy', serif;
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
     font-weight: 200;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -150,26 +158,11 @@ const FeatureStyles = styled.section`
     color: white;
     font-family: 'TechProphecy', serif;
     font-weight: 200;
-    font-size: 28px;
+    font-size: clamp(22px, 4.6vw, 56px);
     line-height: 1.15;
     letter-spacing: -0.02em;
     text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
     max-width: 18em;
-  }
-
-  @media (min-width: 52em) {
-    .name {
-      font-size: 2.6rem;
-    }
-    .verse {
-      font-size: 46px;
-    }
-  }
-
-  @media (min-width: 64em) {
-    .verse {
-      font-size: 56px;
-    }
   }
 
   @media (hover: none) {
@@ -255,7 +248,10 @@ export default function Feature({onOpen}) {
           </div>
         </button>
         <div>
-          <p className="label">Selected work · {number}</p>
+          <p className="label">
+            Selected work · {number}
+            {featured.rarity ? ` · ${featured.rarity}` : ''}
+          </p>
           <h2 className="name">{featured.name}</h2>
           {featured.description ? (
             <p className="verse">{featured.description}</p>

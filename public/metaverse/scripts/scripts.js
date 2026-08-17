@@ -8,24 +8,43 @@ AFRAME.registerComponent('raycaster-img', {
     const el = this.el;
     const videoToPlay = this.data.video;
     const videoVisible = this.data.visible;
+    const restScale = el.getAttribute('scale') || {x: 1, y: 1, z: 1};
+
+    function videoUsable(video) {
+      if (!video || typeof video.play !== 'function') return false;
+      if (video.error) return false;
+      if (video.networkState === 3) return false;
+      return video.readyState >= 2;
+    }
 
     this.el.addEventListener('mouseenter', () => {
-      if (videoToPlay && typeof videoToPlay.play === 'function') {
+      el.setAttribute('scale', '1.06 1.06 1.06');
+
+      if (videoUsable(videoToPlay)) {
         const play = videoToPlay.play();
         if (play && typeof play.catch === 'function') play.catch(function () {});
+        if (videoVisible) videoVisible.setAttribute('visible', 'true');
+        el.setAttribute('visible', 'false');
+        return;
       }
-      if (videoVisible) videoVisible.setAttribute('visible', 'true');
-      el.setAttribute('visible', 'false');
+
+      el.setAttribute('material', 'opacity', 0.92);
     });
 
     this.el.addEventListener('mouseleave', () => {
+      el.setAttribute(
+        'scale',
+        restScale.x + ' ' + restScale.y + ' ' + restScale.z,
+      );
+      el.setAttribute('material', 'opacity', 1);
+      el.setAttribute('visible', 'true');
+
       if (videoToPlay && typeof videoToPlay.pause === 'function') {
         videoToPlay.pause();
         videoToPlay.currentTime = 0;
         if (typeof videoToPlay.load === 'function') videoToPlay.load();
       }
       if (videoVisible) videoVisible.setAttribute('visible', 'false');
-      el.setAttribute('visible', 'true');
     });
   },
 });
