@@ -3,6 +3,7 @@ import {useCallback, useRef, useState} from 'react';
 import styled from 'styled-components';
 
 import EnterVr from '../components/EnterVr';
+import MarkLoader from '../components/MarkLoader';
 
 const FrameStyles = styled.div`
   position: fixed;
@@ -102,6 +103,16 @@ const FrameStyles = styled.div`
     object-fit: contain;
     display: block;
   }
+
+  .chapel-wait {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
 `;
 
 export default function MetaversePage() {
@@ -152,6 +163,11 @@ export default function MetaversePage() {
         </Link>
       </div>
       <EnterVr onClick={enterVr} label="Enter VR" />
+      {!ready ? (
+        <div className="chapel-wait">
+          <MarkLoader size="lg" pulse />
+        </div>
+      ) : null}
       <iframe
         ref={frame}
         className={ready ? 'is-on' : undefined}

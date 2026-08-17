@@ -3,6 +3,7 @@ import Head from 'next/head';
 import {useRouter} from 'next/router';
 
 import {Page} from '../components';
+import SiteLoader from '../components/SiteLoader';
 
 import 'nprogress/nprogress.css';
 import '../components/styles/nprogress.css';
@@ -29,6 +30,7 @@ export default function MyApp({Component, pageProps}) {
         />
       </Head>
       <TopProgressBar />
+      <SiteLoader skipSplash={bare} />
       <Component {...pageProps} />
     </Page>
   );

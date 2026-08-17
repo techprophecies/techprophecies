@@ -25,6 +25,5 @@ export {default as Video} from './Video';
 export {default as Banner} from './Banner';
 export {default as Symbol} from './Symbol';
 export {default as EnterVr} from './EnterVr';
-
-// EFFECTS
-export {default as LoadingGlow} from './LoadingGlow';
+export {default as MarkLoader} from './MarkLoader';
+export {default as SiteLoader} from './SiteLoader';

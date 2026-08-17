@@ -3,6 +3,7 @@ import {nftarray} from './nfts';
 import {chapel} from './chapel';
 import {videos} from './videos';
 import {voices} from './voices';
+import {renders} from './renders';
 
 function titleFromPath(path) {
   const file = path.split('/').pop().replace(/\.[^.]+$/, '');
@@ -38,5 +39,6 @@ export const works = artworks.map((image, index) => {
     prompt: meta.prompt || '',
     video: videos[n] || '',
     voice: voices[n] || '',
+    renders: renders[n] || {},
   };
 });

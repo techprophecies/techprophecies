@@ -2,6 +2,8 @@ import {useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
 
+import MarkLoader from './MarkLoader';
+
 const Overlay = styled.div`
   position: fixed;
   inset: 0;
@@ -80,6 +82,17 @@ const Panel = styled.div`
   .unmute:focus-visible {
     outline: none;
     box-shadow: 0 0 12px rgba(0, 255, 247, 0.4);
+  }
+
+  .media-wait {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.28);
   }
 
   .media-bar {
@@ -169,6 +182,7 @@ const Panel = styled.div`
 export default function Lightbox({work, onClose, onPrev, onNext}) {
   const videoRef = useRef(null);
   const [needsUnmute, setNeedsUnmute] = useState(false);
+  const [videoReady, setVideoReady] = useState(!work || !work.video);
 
   useEffect(() => {
     if (!work) return undefined;
@@ -193,8 +207,14 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
     const video = videoRef.current;
     if (!video || !work || !work.video) {
       setNeedsUnmute(false);
+      setVideoReady(true);
       return undefined;
     }
+
+    setVideoReady(false);
+    const onReady = () => setVideoReady(true);
+    video.addEventListener('canplay', onReady);
+    video.addEventListener('loadeddata', onReady);
 
     video.muted = false;
     const play = video.play();
@@ -210,6 +230,8 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
     }
 
     return () => {
+      video.removeEventListener('canplay', onReady);
+      video.removeEventListener('loadeddata', onReady);
       video.pause();
     };
   }, [work]);
@@ -257,6 +279,11 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
               <button className="unmute" type="button" onClick={unmute}>
                 Unmute
               </button>
+            ) : null}
+            {work.video && !videoReady ? (
+              <div className="media-wait">
+                <MarkLoader size="sm" pulse />
+              </div>
             ) : null}
           </div>
           <div className="media-bar">
