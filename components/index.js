@@ -24,8 +24,5 @@ export {default as Video} from './Video';
 export {default as Banner} from './Banner';
 export {default as Symbol} from './Symbol';
 
-// WEB3
-export {default as Wallet} from './Wallet';
-
 // EFFECTS
 export {default as LoadingGlow} from './LoadingGlow';

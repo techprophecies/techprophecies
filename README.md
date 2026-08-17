@@ -1,18 +1,23 @@
 # Tech Prophecies
 
-@Moises Sanabria & @Fabiola Larios
+Moises Sanabria and Fabiola Larios, 2021–22.
 
----
+Generative image cycle and A-Frame environment. Public restage of the original web work — gallery and 3D space, no minting.
 
-## Todo
+## Run locally
 
-- Loading TopBar Remove the NextJS Loading Bar since it currently is not working
-- Menu When you are on a URL make the menu is active
-- Wallet if Connect, Show Disconnect Button
-- Logo icon should return to the Home Page
-- Search remove for now
-- Mouse Icon desktop
-- Footer extra info (social)
-- About
+Node 18. The Next 11 build needs the OpenSSL legacy provider (already in the npm scripts).
 
-`npm install --force`
+```bash
+npm install
+npm run dev
+```
+
+- Gallery: http://localhost:3000
+- Space: http://localhost:3000/metaverse
+- About: http://localhost:3000/about
+
+## Source
+
+- Site: this repository
+- 3D space vendored from [techprophecies/meta-prophecies-tech](https://github.com/techprophecies/meta-prophecies-tech) into `public/metaverse/`

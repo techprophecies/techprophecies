@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+    <script src="scripts/scripts.js"></script>
+    <title>Tech Prophecies</title>
+</head>
+<body>
+    <a-scene>
+
+        <a-assets>
+            <!--1-->
+            <img id="cyberWoman" src="img/jpg/1_cyber_woman.jpg">
+            <video id="cyberWomanV" src="videos/1_cyber_woman.mp4"></video>
+
+            <!--2-->
+            <img id="zoomPeople" src="img/jpg/2_zoom_people.jpg">
+            <video id="zoomPeopleV" src="videos/2_zoom_people.mp4"></video>
+
+            <!--3-->
+            <img id="androidHumanoid" src="img/jpg/3_androids_humanoid_robots_cyborgs_dream_with_electric sheep.jpg">
+            <video id="androidHumanoidV" src="videos/3_androids_humanoid_robots_cyborgs_dream_with_electric sheep.mp4"></video>
+
+            <!--4-->
+            <img id="boysSou" src="img/jpg/4_boy_sourrounded_by_smartphones.jpg">
+            <video id="boysSouV" src="videos/4_boy_sourrounded_by_smartphones.mp4"></video>
+
+            <!--5-->
+            <img id="windowsLab" src="img/jpg/5_windows labyrinth.jpg">
+            <video id="windowsLabV" src="videos/5_windows labyrinth.mp4"></video>
+
+            <!--6-->
+            <img id="computerBroke" src="img/jpg/6_computer_broke_with_a _eyboard_in_the_screen_flying_in the_middle_of_computers.jpg">
+            <video id="computerBrokeV" src="videos/6_computer_broke_with_a _eyboard_in_the_screen_flying_in the_middle_of_computers.mp4"></video>
+          
+            <!--Arriba Inclinaciones-->
+
+            <!--7-->
+            <img id="metalAngels" src="img/jpg/7_metal_cyber_angels.jpg">
+            <video id="metalAngelsV" src="videos/7_metal_cyber_angels.mp4"></video>
+
+            <!--8-->
+            <img id="cyberCity" src="img/jpg/8_cyber_city.jpg">
+            <video id="cyberCityV" src="videos/8_cyber_city.mp4"></video>
+
+            <!--9-->
+            <img id="manCoat" src="img/jpg/9_man_with_grey_coat_and_black_hat_with_a_cellphone_in_the_mouth.jpg">
+            <video id="manCoatV" src="videos/9_man_with_grey_coat_and_black_hat_with_a_cellphone_in_the_mouth.mp4"></video>
+
+            <!--Arriba Inclinaciones-->
+           <!--10-->
+           <img id="smartphoneLegs" src="img/jpg/10_smartphone_two_legs_walking_on_water.jpg">
+           <video id="smartphoneLegsV" src="videos/10_smartphone_two_legs_walking_on_water.mp4"></video>
+
+            <!--11-->
+            <img id="personSmartphone" src="img/jpg/11_person_smartphone_hug.jpg">
+            <video id="personSmartphoneV" src="videos/11_person_smartphone_hug.mp4"></video>
+
+            <!--12-->
+            <img id="surveillanceCamera" src="img/jpg/12_surveillance_camera_flower_with_lightning.jpg">
+            <video id="surveillanceCameraV" src="videos/12_surveillance_camera_flower_with_lightning.mp4"></video>
+
+            <!--13-->
+            <img id="selfieAliens" src="img/jpg/13_selfie_aliens.jpg">
+            <video id="selfieAliensV" src="videos/13_selfie_aliens.mp4"></video>
+
+            <!--14-->
+            <img id="cyborgEarth" src="img/jpg/14_cyborg_earthtree.jpg">
+            <video id="cyborgEarthV" src="videos/14_cyborg_earthtree.mp4"></video>
+
+            <!--15-->
+            <img id="computerFlames" src="img/jpg/15_computer_in_flames.jpg">
+            <video id="computerFlamesV" src="videos/15_computer_in_flames.mp4"></video>
+
+            <!--16-->
+            <img id="robotHumans" src="img/jpg/16_robot_humans_nature.jpg">
+            <video id="robotHumansV" src="videos/16_robot_humans_nature.mp4"></video>
+
+            <!--17-->
+            <img id="robotFamily" src="img/jpg/17_robot_family_hugging.jpg">
+            <video id="robotFamilyV" src="videos/17_robot_family_hugging.mp4"></video>
+
+            <!--18-->
+            <img id="windows95" src="img/jpg/18_windows95_start_to_a_golden_fantastic_land_with_a_glitter_baby_blue_sky_with_clouds.jpg">
+            <video id="windows95V" src="videos/18_windows95_start_to_a_golden_fantastic_land_with_a_glitter_baby_blue_sky_with_clouds.mp4"></video>
+
+            <!--19-->
+            <img id="threeFace" src="img/jpg/19_three_face_smartphone_people.jpg">
+            <video id="threeFaceV" src="videos/19_three_face_smartphone_people.mp4"></video>
+
+            <!--20-->
+            <img id="womanGun" src="img/jpg/20_woman_holding_gun_to_head_with_computer.jpg">
+            <video id="womanGunV" src="videos/20_woman_holding_gun_to_head_with_computer.mp4"></video>
+
+            <!--21-->
+            <img id="smartDog" src="img/jpg/21_selfie_stick_robot.jpg">
+            <video id="smartDogV" src="videos/21_selfie_stick_robot.mp4"></video>
+
+            <!--22-->
+            <img id="legSmart" src="img/jpg/22_4_leg_smartphone_dog.jpg">
+            <video id="legSmartV" src="videos/22_4_leg_smartphone_dog.mp4"></video>
+
+            <!--23-->
+            <img id="mountainCellphones" src="img/jpg/23_mountain_of_cellphones_with_iridiscent_snow_around.jpg">
+            <video id="mountainCellphonesV" src="videos/23_mountain_of_cellphones_with_iridiscent_snow_around.mp4"></video>
+
+            <!--24-->
+            <img id="silverRobots" src="img/jpg/24_silver_robots_kissing.jpg">
+            <video id="silverRobotsV" src="videos/24_silver_robots_kissing.mp4"></video>
+
+            <!--25-->
+            <img id="stockMarket" src="img/jpg/25_stock_market_jungle.jpg">
+            <video id="stockMarketV" src="videos/25_stock_market_jungle.mp4"></video>
+
+            <!--26-->
+            <img id="plantHuman" src="img/jpg/26_plant_human.jpg">
+            <video id="plantHumanV" src="videos/26_plant_human.mp4"></video>
+
+            <!--27-->
+            <img id="microchipNature" src="img/jpg/27_microchip_nature.jpg">
+            <video id="microchipNatureV" src="videos/27_microchip_nature.mp4"></video>
+
+            <!--28-->
+            <img id="humanStranded" src="img/jpg/28_human_stranded_in_circuit_island_.jpg">
+            <video id="humanStrandedV" src="videos/28_human_stranded_in_circuit_island_1.mp4"></video>
+
+            <!--29-->
+            <img id="rollercoaster" src="img/jpg/29_rollercoaster.jpg">
+            <video id="rollercoasterV" src="videos/29_rollercoaster.mp4"></video>
+
+            <!--30-->
+            <img id="explorerLogo" src="img/jpg/30_blue_Internet_explorer_logo_with_golden_wings_flying_and_white lights.jpg">
+            <video id="explorerLogoV" src="videos/30_blue_Internet_explorer_logo_with_golden_wings_flying_and_white lights.mp4"></video>
+
+            <!--31-->
+            <img id="flyingComputers" src="img/jpg/31_flying_computers_blue_sky.jpg">
+            <video id="flyingComputersV" src="videos/31_flying_computers_blue_sky.mp4"></video>
+
+            <!--32-->
+            <img id="handWorld" src="img/jpg/32_hand-touch-world.jpg">
+            <video id="handWorldV" src="videos/32_hand-touch-world.mp4"></video>
+
+            <!--33-->
+            <img id="computerTower" src="img/jpg/33_computer tower_in_white_silver_glitter mountain.jpg">
+            <video id="computerTowerV" src="videos/33_computer tower_in_white_silver_glitter mountain.mp4"></video>
+            
+            <!--34-->
+            <img id="robotMeditation" src="img/jpg/34_robot_meditation.jpg">
+            <video id="robotMeditationV" src="videos/34_robot_meditation.mp4"></video>
+
+            <!--35-->
+            <img id="robotPlants" src="img/jpg/35_robot_plants.jpg">
+            <video id="robotPlantsV" src="videos/35_robot_plants.mp4"></video>
+
+            <!--36-->
+            <img id="smartphoneTree" src="img/jpg/36_smartphone_tree_city.jpg">
+            <video id="smartphoneTreeV" src="videos/36_smartphone_tree_city.mp4"></video>
+
+            <!--37-->
+            <img id="personNature" src="img/jpg/37_person_in_nature_computer.jpg">
+            <video id="personNatureV" src="videos/37_person_in_nature_computer.mp4"></video>
+
+            <!--38-->
+            <img id="stonehenge" src="img/jpg/38_stonehenge_smartphone.jpg">
+            <video id="stonehengeV" src="videos/38_stonehenge_smartphone.mp4"></video>
+
+            <!--39-->
+            <img id="brainComputer" src="img/jpg/39_brain_computer_farm.jpg">
+            <video id="brainComputerV" src="videos/39_brain_computer_farm.mp4"></video>
+
+            <!--40-->
+            <img id="cyberCityFlag" src="img/jpg/40_cyber_city_flag.jpg">
+            <video id="cyberCityFlagV" src="videos/40_cyber_city_flag.mp4"></video>
+
+            <!--41-->
+            <img id="clonesLaboratory" src="img/jpg/41_clones_laboratory.jpg">
+            <video id="clonesLaboratoryV" src="videos/41_clones_laboratory.mp4"></video>
+
+
+            <!--42-->
+            <img id="robotTv" src="img/jpg/42_robot_tv_lights_plant.jpg">
+            <video id="robotTvV" src="videos/42_robot_tv_lights_plant_1.mp4"></video>
+
+            <!--43-->
+            <img id="greenLand" src="img/jpg/43_iridiscent_green_land_with_baby_blue_sky.jpg">
+            <video id="greenLandV" src="videos/43_iridiscent_green_land_with_baby_blue_sky.mp4"></video>
+
+
+            <!--44-->
+            <img id="blueKeyboward" src="img/jpg/44_blue keyboward.jpg">
+            <video id="blueKeybowardV" src="videos/44_blue keyboward.mp4"></video>
+
+            <!--45-->
+            <img id="blueThinLaptops" src="img/jpg/45_light_blue_thin cable lights_with laptops.jpg">
+            <video id="blueThinLaptopsV" src="videos/45_light_blue_thin cable lights_with laptops.mp4"></video>
+
+
+            <!--46-->
+            <img id="robotHug" src="img/jpg/46_robot-hug.jpg">
+            <video id="robotHugV" src="videos/46_robot-hug.mp4"></video>
+
+            <!--47-->
+            <img id="socialMedia" src="img/jpg/47_social-media-city.jpg">
+            <video id="socialMediaV" src="videos/47_social-media-city.mp4"></video>
+
+
+            <!--48-->
+            <img id="robotsAds" src="img/jpg/48_robots_with_ads.jpg">
+            <video id="robotsAdsV" src="videos/48_robots_with_ads.mp4"></video>
+
+            <!--49-->
+            <img id="flowersDarkSmart" src="img/jpg/49_flowers field_with dark_smartphones_growing.jpg">
+            <video id="flowersDarkSmartV" src="videos/49_flowers field_with dark_smartphones_growing.mp4"></video>
+
+
+
+
+            <!--50-->
+            <img id="dreamTvMachine" src="img/jpg/50_dream_tv_machine_in_bushes.jpg">
+            <video id="dreamTvMachineV" src="videos/50_dream_tv_machine_in_bushes.mp4"></video>
+
+            <!--51-->
+            <img id="matrixForest" src="img/jpg/51_matrix_forest.jpg">
+            <video id="matrixForestV" src="videos/51_matrix_forest.mp4"></video>
+
+            <!--52-->
+            <img id="stockMarketForest" src="img/jpg/52_stock_market_forest.jpg">
+            <video id="stockMarketForestV" src="videos/52_stock_market_forest.mp4"></video>
+
+            <!--53-->
+            <img id="cyborgDolphins" src="img/jpg/53_cyborg_dolphins_city_underwater.jpg">
+            <video id="cyborgDolphinsV" src="videos/53_cyborg_dolphins_city_underwater.mp4"></video>
+
+            <!--54-->
+            <img id="weirdMachine" src="img/jpg/54_weird_machine_floating_with_blue_lights_rising_up.jpg">
+            <video id="weirdMachineV" src="videos/54_weird_machine_floating_with_blue_lights_rising_up.mp4"></video>
+
+            <!--55-->
+            <img id="blueRobot" src="img/jpg/55_xray_blue_robot_in_fantasy_enviroment.jpg">
+            <video id="blueRobotV" src="videos/55_xray_blue_robot_in_fantasy_enviroment.mp4"></video>
+
+
+
+
+            <!--56-->
+            <img id="computerDarkAround" src="img/jpg/56_computer_in_the_darkness lights_around_with_white_cable_lights_coming_out.jpg">
+            <video id="computerDarkAroundV" src="videos/56_computer_in_the_darkness lights_around_with_white_cable_lights_coming_out_2.mp4"></video>
+
+           <!--57-->
+           <img id="cityAds" src="img/jpg/57_city_ads.jpg">
+           <video id="cityAdsV" src="videos/57_city_ads.mp4"></video>
+
+           <!--58-->
+           <img id="cyberDog" src="img/jpg/58_cyber_dog.jpg">
+           <video id="cyberDogV" src="videos/58_cyber_dog.mp4"></video>
+           
+           <!--59-->
+           <img id="cyborgFictional" src="img/jpg/59_cyborgs_a_fictional_being_that is_human_robot_with_cables.jpg">
+           <video id="cyborgFictionalV" src="videos/59_cyborgs_a_fictional_being_that is_human_robot_with_cables.mp4"></video>
+
+           <!--60-->
+           <img id="suitCamera" src="img/jpg/60_suit_camera_person.jpg">
+           <video id="suitCameraV" src="videos/60_suit_camera_person.mp4"></video>
+
+           <!--61-->
+           <img id="keyboardArms" src="img/jpg/61_keyboard_over_man_with_arms_and_computer_head.jpg">
+           <video id="keyboardArmsV" src="videos/61_keyboard_over_man_with_arms_and_computer_head.mp4"></video>
+
+           <!--62-->
+           <img id="floatingSilver" src="img/jpg/62_code_with_a_floating_silver_robot_face_with_bright_pink_sky_and_black_palms.jpg">
+           <video id="floatingSilverV" src="videos/62_code_with_a_floating_silver_robot_face_with_bright_pink_sky_and_black_palms.mp4"></video>
+
+           <!--63-->
+           <img id="roboticUnicorn" src="img/jpg/63_robotic_unicorn_tornado.jpg">
+           <video id="roboticUnicornV" src="videos/63_robotic_unicorn_tornado.mp4"></video>
+
+           <!--64-->
+           <img id="socialMediaCake" src="img/jpg/64_social_media_cake.jpg">
+           <video id="socialMediaCakeV" src="videos/64_social_media_cake.mp4"></video>
+
+           <!--65-->
+           <img id="bitcoinXray" src="img/jpg/65_bitcoin_xray_head_brain.jpg">
+           <video id="bitcoinXrayV" src="videos/65_bitcoin_xray_head_brain.mp4"></video>
+
+           <!--66-->
+           <img id="computersAroundSexy" src="img/jpg/66_computers around_sexy robot.jpg">
+           <video id="computersAroundSexyV" src="videos/66_computers around_sexy robot.mp4"></video>
+
+           <!--68-->
+           <img id="rustyComputersGreen" src="img/jpg/68_rusty_computers_with_green_letters_inside_the_screen.jpg">
+           <video id="rustyComputersGreenV" src="videos/68_rusty_computers_with_green_letters_inside_the_screen.mp4"></video>
+
+           <!--69-->
+           <img id="computerRiver" src="img/jpg/69_computer_river_waves.jpg">
+           <video id="computerRiverV" src="videos/69_computer_river_waves.mp4"></video>
+
+           <!--71-->
+           <img id="alienGodFaces" src="img/jpg/71_alien_god_faces_eyes_in_desert.jpg">
+           <video id="alienGodFacesV" src="videos/71_alien_god_faces_eyes_in_desert.mp4"></video>
+            
+
+            <!--Biblia-->
+            <a-asset-item id="bibliaSRC" src="modelos/bibliaFinal.glb" ></a-asset-item>
+        
+          <!--Ether-->
+          <a-asset-item id="etherSRC" src="modelos/ether.glb" ></a-asset-item>
+        
+        
+        </a-assets>
+        
+        
+        <!--Programa-->
+        <a-entity environment="preset: starry"></a-entity>
+
+        <a-entity camera look-controls wasd-controls="fly:false" position="0 1.6 25">
+            <a-entity id="raycasterMouse"
+            cursor
+            position="0 0 -1"
+            raycaster="objects: .clickeable"
+            geometry="primitive: ring; radiusInner: 0.025; radiusOuter: 0.03"
+            material="color: white; shader: flat; opacity: 0.5"
+            ></a-entity>
+        
+
+
+        </a-entity>
+
+
+ <a-entity id="todos" visible="false">           
+        <!--1-->
+        <a-video id="cyberWomanVideo" visible="false" src="#cyberWomanV" width="3.2" height="3.2" position="0 1.5 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#cyberWomanV; visible:#cyberWomanVideo" src="#cyberWoman" width="3.2" height="3.2" position="0 1.5 7"></a-image>
+
+        <!--2-->
+        <a-video id="zoomPeopleVideo" visible="false" src="#zoomPeopleV" width="3.2" height="3.2" position="3.2 1.5 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#zoomPeopleV; visible:#zoomPeopleVideo" src="#zoomPeople" width="3.2" height="3.2" position="3.2 1.5 7"></a-image>
+
+        <!--3-->
+        <a-video id="androidHumanoidVideo" visible="false" src="#androidHumanoidV" width="3.2" height="3.2" position="-3.2 1.5 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#androidHumanoidV; visible:#androidHumanoidVideo" src="#androidHumanoid" width="3.2" height="3.2" position="-3.2 1.5 7"></a-image>
+
+        <!--4-->
+        <a-video id="boysSouVideo" visible="false" src="#boysSouV" width="3.2" height="3.2" position="-3.2 4.7 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#boysSouV; visible:#boysSouVideo" src="#boysSou" width="3.2" height="3.2" position="-3.2 4.7 7"></a-image>
+
+        <!--5-->
+        <a-video id="windowsLabVideo" visible="false" src="#windowsLabV" width="3.2" height="3.2" position="0 4.7 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#windowsLabV; visible:#windowsLabVideo" src="#windowsLab" width="3.2" height="3.2" position="0 4.7 7"></a-image>
+
+        <!--6-->
+        <a-video id="computerBrokeVideo" visible="false" src="#computerBrokeV" width="3.2" height="3.2" position="3.2 4.7 7"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#computerBrokeV; visible:#computerBrokeVideo" src="#computerBroke" width="3.2" height="3.2" position="3.2 4.7 7"></a-image>
+
+<a-entity id="rigArribaInclinaciones" position="0 1.27 -1.029" rotation="10 0 0">
+       <!--7-->
+       <a-video id="metalAngelsVideo" visible="false" src="#metalAngelsV" width="3.2" height="3.2" position="3.2 7.68 7.8" rotation="30 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#metalAngelsV; visible:#metalAngelsVideo" src="#metalAngels" width="3.2" height="3.2" position="3.2 7.68 7.8" rotation="30 0 0"></a-image>
+
+       <!--8-->
+       <a-video id="cyberCityVideo" visible="false" src="#cyberCityV" width="3.2" height="3.2" position="0 7.68 7.8" rotation="30 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#cyberCityV; visible:#cyberCityVideo" src="#cyberCity" width="3.2" height="3.2" position="0 7.68 7.8" rotation="30 0 0"></a-image>
+
+       <!--9-->
+       <a-video id="manCoatVideo" visible="false" src="#manCoatV" width="3.2" height="3.2" position="-3.2 7.68 7.8" rotation="30 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#manCoatV; visible:#manCoatVideo" src="#manCoat" width="3.2" height="3.2" position="-3.2 7.68 7.8" rotation="30 0 0"></a-image>
+</a-entity>
+<a-entity id="techoRig" position="0 -0.350 0.430" >
+       <!--Techo-->
+       <!--10-->
+       <a-video id="smartphoneLegsVideo" visible="false" src="#smartphoneLegsV" width="3.2" height="3.2" position="-3.2 9.06 10.2" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#smartphoneLegsV; visible:#smartphoneLegsVideo" src="#smartphoneLegs" width="3.2" height="3.2" position="-3.2 9.06 10.2" rotation="90 0 0"></a-image>
+
+        <!--11-->
+        <a-video id="personSmartphoneVideo" visible="false" src="#personSmartphoneV" width="3.2" height="3.2" position="0 9.06 10.2" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#personSmartphoneV; visible:#personSmartphoneVideo" src="#personSmartphone" width="3.2" height="3.2" position="0 9.06 10.2" rotation="90 0 0"></a-image>
+ 
+        <!--12-->
+        <a-video id="surveillanceCameraVideo" visible="false" src="#surveillanceCameraV" width="3.2" height="3.2" position="3.2 9.06 10.2" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#surveillanceCameraV; visible:#surveillanceCameraVideo" src="#surveillanceCamera" width="3.2" height="3.2" position="3.2 9.06 10.2" rotation="90 0 0"></a-image>
+
+        <!--13-->
+        <a-video id="selfieAliensVideo" visible="false" src="#selfieAliensV" width="3.2" height="3.2" position="3.2 9.06 13.4" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#selfieAliensV; visible:#selfieAliensVideo" src="#selfieAliens" width="3.2" height="3.2" position="3.2 9.06 13.4" rotation="90 0 0"></a-image>
+
+        <!--14-->
+        <a-video id="cyborgEarthVideo" visible="false" src="#cyborgEarthV" width="3.2" height="3.2" position="0 9.06 13.4" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgEarthV; visible:#cyborgEarthVideo" src="#cyborgEarth" width="3.2" height="3.2" position="0 9.06 13.4" rotation="90 0 0"></a-image>
+
+        <!--15-->
+        <a-video id="computerFlamesVideo" visible="false" src="#computerFlamesV" width="3.2" height="3.2" position="-3.2 9.06 13.4" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#computerFlamesV; visible:#computerFlamesVideo" src="#computerFlames" width="3.2" height="3.2" position="-3.2 9.06 13.4" rotation="90 0 0"></a-image>
+
+        <!--16-->
+        <a-video id="robotHumansVideo" visible="false" src="#robotHumansV" width="3.2" height="3.2" position="0 9.06 16.6" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#robotHumansV; visible:#robotHumansVideo" src="#robotHumans" width="3.2" height="3.2" position="0 9.06 16.6" rotation="90 0 0"></a-image>
+
+        <!--17-->
+        <a-video id="robotFamilyVideo" visible="false" src="#robotFamilyV" width="3.2" height="3.2" position="-3.2 9.06 16.6" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#robotFamilyV; visible:#robotFamilyVideo" src="#robotFamily" width="3.2" height="3.2" position="-3.2 9.06 16.6" rotation="90 0 0"></a-image>
+
+        <!--18-->
+        <a-video id="windows95Video" visible="false" src="#windows95V" width="3.2" height="3.2" position="3.2 9.06 16.6" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#windows95V; visible:#windows95Video" src="#windows95" width="3.2" height="3.2" position="3.2 9.06 16.6" rotation="90 0 0"></a-image>
+
+        <!--19-->
+        <a-video id="threeFaceVideo" visible="false" src="#threeFaceV" width="3.2" height="3.2" position="0 9.06 19.8" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#threeFaceV; visible:#threeFaceVideo" src="#threeFace" width="3.2" height="3.2" position="0 9.06 19.8" rotation="90 0 0"></a-image>
+
+        <!--20-->
+        <a-video id="womanGunVideo" visible="false" src="#womanGunV" width="3.2" height="3.2" position="-3.2 9.06 19.8" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#womanGunV; visible:#womanGunVideo" src="#womanGun" width="3.2" height="3.2" position="-3.2 9.06 19.8" rotation="90 0 0"></a-image>
+
+        <!--21-->
+        <a-video id="smartDogVideo" visible="false" src="#smartDogV" width="3.2" height="3.2" position="3.2 9.06 19.8" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#smartDogV; visible:#smartDogVideo" src="#smartDog" width="3.2" height="3.2" position="3.2 9.06 19.8" rotation="90 0 0"></a-image>
+
+        <!--22-->
+        <a-video id="legSmartVideo" visible="false" src="#legSmartV" width="3.2" height="3.2" position="0 9.06 23" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#legSmartV; visible:#legSmartVideo" src="#legSmart" width="3.2" height="3.2" position="0 9.06 23" rotation="90 0 0"></a-image>
+
+        <!--23-->
+        <a-video id="mountainCellphonesVideo" visible="false" src="#mountainCellphonesV" width="3.2" height="3.2" position="-3.2 9.06 23" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#mountainCellphonesV; visible:#mountainCellphonesVideo" src="#mountainCellphones" width="3.2" height="3.2" position="-3.2 9.06 23" rotation="90 0 0"></a-image>
+
+        <!--24-->
+        <a-video id="silverRobotsVideo" visible="false" src="#silverRobotsV" width="3.2" height="3.2" position="3.2 9.06 23" rotation="90 0 0"></a-video>
+        <a-image class="clickeable"  visible="true" raycaster-img="video:#silverRobotsV; visible:#silverRobotsVideo" src="#silverRobots" width="3.2" height="3.2" position="3.2 9.06 23" rotation="90 0 0"></a-image>
+r
+       <!--25-->
+       <a-video id="stockMarketVideo" visible="false" src="#stockMarketV" width="3.2" height="3.2" position="0 9.06 26.2" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#stockMarketV; visible:#stockMarketVideo" src="#stockMarket" width="3.2" height="3.2" position="0 9.06 26.2" rotation="90 0 0"></a-image>
+
+       <!--26-->
+       <a-video id="plantHumanVideo" visible="false" src="#plantHumanV" width="3.2" height="3.2" position="-3.2 9.06 26.2" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#plantHumanV; visible:#plantHumanVideo" src="#plantHuman" width="3.2" height="3.2" position="-3.2 9.06 26.2" rotation="90 0 0"></a-image>
+
+       <!--27-->
+       <a-video id="microchipNatureVideo" visible="false" src="#microchipNatureV" width="3.2" height="3.2" position="3.2 9.06 26.2" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#microchipNatureV; visible:#microchipNatureVideo" src="#microchipNature" width="3.2" height="3.2" position="3.2 9.06 26.2" rotation="90 0 0"></a-image>
+
+       <!--28-->
+       <a-video id="humanStrandedVideo" visible="false" src="#humanStrandedV" width="3.2" height="3.2" position="0 9.06 29.4" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#humanStrandedV; visible:#humanStrandedVideo" src="#humanStranded" width="3.2" height="3.2" position="0 9.06 29.4" rotation="90 0 0"></a-image>
+
+       <!--29-->
+       <a-video id="rollercoasterVideo" visible="false" src="#rollercoasterV" width="3.2" height="3.2" position="-3.2 9.06 29.4" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#rollercoasterV; visible:#rollercoasterVideo" src="#rollercoaster" width="3.2" height="3.2" position="-3.2 9.06 29.4" rotation="90 0 0"></a-image>
+
+       <!--30-->
+       <a-video id="explorerLogoVideo" visible="false" src="#explorerLogoV" width="3.2" height="3.2" position="3.2 9.06 29.4" rotation="90 0 0"></a-video>
+       <a-image class="clickeable"  visible="true" raycaster-img="video:#explorerLogoV; visible:#explorerLogoVideo" src="#explorerLogo" width="3.2" height="3.2" position="3.2 9.06 29.4" rotation="90 0 0"></a-image>
+
+    </a-entity>
+        
+      <!--Laterales inclinados abajo-->
+
+      <!--31-->
+      <a-video id="flyingComputersVideo" visible="false" src="#flyingComputersV" width="3.2" height="3.2" position="5.62 1.5 8.35" rotation="0 -60 0"></a-video>
+      <a-image class="clickeable"  visible="true" raycaster-img="video:#flyingComputersV; visible:#flyingComputersVideo" src="#flyingComputers" width="3.2" height="3.2" position="5.62 1.5 8.35" rotation="0 -60 0"></a-image>
+
+     <!--32-->
+     <a-video id="handWorldVideo" visible="false" src="#handWorldV" width="3.2" height="3.2" position="5.62 4.7 8.35" rotation="0 -60 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#handWorldV; visible:#handWorldVideo" src="#handWorld" width="3.2" height="3.2" position="5.62 4.7 8.35" rotation="0 -60 0"></a-image>
+<a-entity id="posteIzquierdo">
+     
+     <!--33-->
+     <a-video id="computerTowerVideo" visible="false" src="#computerTowerV" width="3.2" height="3.2" position="-5.62 1.5 8.35" rotation="0 60 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#computerTowerV; visible:#computerTowerVideo" src="#computerTower" width="3.2" height="3.2" position="-5.62 1.5 8.35" rotation="0 60 0"></a-image>
+     
+     <!--34-->
+     <a-video id="robotMeditationVideo" visible="false" src="#robotMeditationV" width="3.2" height="3.2" position="-5.62 4.7 8.35" rotation="0 60 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#robotMeditationV; visible:#robotMeditationVideo" src="#robotMeditation" width="3.2" height="3.2" position="-5.62 4.7 8.35" rotation="0 60 0"></a-image>
+</a-entity>
+<a-entity id="rigParedIzquierda">
+
+      <!--Pared izquierda -->
+    
+     <!--35-->
+     <a-video id="robotPlantsVideo" visible="false" src="#robotPlantsV" width="3.2" height="3.2" position="-6.42 4.7 11.34" rotation="0 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#robotPlantsV; visible:#robotPlantsVideo" src="#robotPlants" width="3.2" height="3.2" position="-6.42 4.7 11.34" rotation="0 90 0"></a-image>
+
+     <!--36-->
+     <a-video id="smartphoneTreeVideo" visible="false" src="#smartphoneTreeV" width="3.2" height="3.2" position="-6.42 1.5 11.34" rotation="0 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#smartphoneTreeV; visible:#smartphoneTreeVideo" src="#smartphoneTree" width="3.2" height="3.2" position="-6.42 1.5 11.34" rotation="0 90 0"></a-image>
+
+     <!--37-->
+     <a-video id="personNatureVideo" visible="false" src="#personNatureV" width="3.2" height="3.2" position="-6.42 4.7 14.54" rotation="0 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#personNatureV; visible:#personNatureVideo" src="#personNature" width="3.2" height="3.2" position="-6.42 4.7 14.54" rotation="0 90 0"></a-image>
+
+     <!--38-->
+     <a-video id="stonehengeVideo" visible="false" src="#stonehengeV" width="3.2" height="3.2" position="-6.42 1.5 14.54" rotation="0 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#stonehengeV; visible:#stonehengeVideo" src="#stonehenge" width="3.2" height="3.2" position="-6.42 1.5 14.54" rotation="0 90 0"></a-image>
+
+
+
+    <!--39-->
+    <a-video id="brainComputerVideo" visible="false" src="#brainComputerV" width="3.2" height="3.2" position="-6.42 4.7 17.74" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#brainComputerV; visible:#brainComputerVideo" src="#brainComputer" width="3.2" height="3.2" position="-6.42 4.7 17.74" rotation="0 90 0"></a-image>
+
+    <!--40-->
+    <a-video id="cyberCityFlagVideo" visible="false" src="#cyberCityFlagV" width="3.2" height="3.2" position="-6.42 1.5 17.74" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#cyberCityFlagV; visible:#cyberCityFlagVideo" src="#cyberCityFlag" width="3.2" height="3.2" position="-6.42 1.5 17.74" rotation="0 90 0"></a-image>
+
+
+    <!--41-->
+    <a-video id="clonesLaboratoryVideo" visible="false" src="#clonesLaboratoryV" width="3.2" height="3.2" position="-6.42 4.7 20.94" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#clonesLaboratoryV; visible:#clonesLaboratoryVideo" src="#clonesLaboratory" width="3.2" height="3.2" position="-6.42 4.7 20.94" rotation="0 90 0"></a-image>
+ 
+
+    <!--42-->
+    <a-video id="robotTvVideo" visible="false" src="#robotTvV" width="3.2" height="3.2" position="-6.42 1.5 20.94" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#robotTvV; visible:#robotTvVideo" src="#robotTv" width="3.2" height="3.2" position="-6.42 1.5 20.94" rotation="0 90 0"></a-image>
+
+    <!--43-->
+    <a-video id="greenLandVideo" visible="false" src="#greenLandV" width="3.2" height="3.2" position="-6.42 4.7 24.14" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#greenLandV; visible:#greenLandVideo" src="#greenLand" width="3.2" height="3.2" position="-6.42 4.7 24.14" rotation="0 90 0"></a-image>
+ 
+
+    <!--44-->
+    <a-video id="blueKeybowardVideo" visible="false" src="#blueKeybowardV" width="3.2" height="3.2" position="-6.42 1.5 24.14" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#blueKeybowardV; visible:#blueKeybowardVideo" src="#blueKeyboward" width="3.2" height="3.2" position="-6.42 1.5 24.14" rotation="0 90 0"></a-image>
+
+    <!--45-->
+    <a-video id="blueThinLaptopsVideo" visible="false" src="#blueThinLaptopsV" width="3.2" height="3.2" position="-6.42 4.7 27.34" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#blueThinLaptopsV; visible:#blueThinLaptopsVideo" src="#blueThinLaptops" width="3.2" height="3.2" position="-6.42 4.7 27.34" rotation="0 90 0"></a-image>
+ 
+
+    <!--46-->
+    <a-video id="robotHugVideo" visible="false" src="#robotHugV" width="3.2" height="3.2" position="-6.42 1.5 27.34" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#robotHugV; visible:#robotHugVideo" src="#robotHug" width="3.2" height="3.2" position="-6.42 1.5 27.34" rotation="0 90 0"></a-image>
+
+    <!--47-->
+    <a-video id="socialMediaVideo" visible="false" src="#socialMediaV" width="3.2" height="3.2" position="-6.42 4.7 30.54" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#socialMediaV; visible:#socialMediaVideo" src="#socialMedia" width="3.2" height="3.2" position="-6.42 4.7 30.54" rotation="0 90 0"></a-image>
+ 
+
+    <!--48-->
+    <a-video id="robotsAdsVideo" visible="false" src="#robotsAdsV" width="3.2" height="3.2" position="-6.42 1.5 30.54" rotation="0 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#robotsAdsV; visible:#robotsAdsVideo" src="#robotsAds" width="3.2" height="3.2" position="-6.42 1.5 30.54" rotation="0 90 0"></a-image>
+
+</a-entity>
+<a-entity id="rigInclinadosIzquierda" position="-1.610 -0.980 -0.710" rotation="0 0 -10">
+    <!--Inclinados laterales izquierdo-->
+    <!--49-->
+    <a-video id="flowersDarkSmartVideo" visible="false" src="#flowersDarkSmartV" width="3.2" height="3.2" position="-5.6 7.67 11.34" rotation="30 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#flowersDarkSmartV; visible:#flowersDarkSmartVideo" src="#flowersDarkSmart" width="3.2" height="3.2" position="-5.6 7.67 11.34" rotation="30 90 0"></a-image>
+
+    <!--50-->
+    <a-video id="dreamTvMachineVideo" visible="false" src="#dreamTvMachineV" width="3.2" height="3.2" position="-5.6 7.67 14.54" rotation="30 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#dreamTvMachineV; visible:#dreamTvMachineVideo" src="#dreamTvMachine" width="3.2" height="3.2" position="-5.6 7.67 14.54" rotation="30 90 0"></a-image>
+
+    <!--51-->
+    <a-video id="matrixForestVideo" visible="false" src="#matrixForestV" width="3.2" height="3.2" position="-5.6 7.67 17.74" rotation="30 90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#matrixForestV; visible:#matrixForestVideo" src="#matrixForest" width="3.2" height="3.2" position="-5.6 7.67 17.74" rotation="30 90 0"></a-image>
+ 
+     <!--52-->
+     <a-video id="stockMarketForestVideo" visible="false" src="#stockMarketForestV" width="3.2" height="3.2" position="-5.6 7.67 20.94" rotation="30 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#stockMarketForestV; visible:#stockMarketForestVideo" src="#stockMarketForest" width="3.2" height="3.2" position="-5.6 7.67 20.94" rotation="30 90 0"></a-image>
+     
+     <!--53-->
+     <a-video id="cyborgDolphinsVideo" visible="false" src="#cyborgDolphinsV" width="3.2" height="3.2" position="-5.6 7.67 24.14" rotation="30 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgDolphinsV; visible:#cyborgDolphinsVideo" src="#cyborgDolphins" width="3.2" height="3.2" position="-5.6 7.67 24.14" rotation="30 90 0"></a-image>
+
+     <!--54-->
+     <a-video id="weirdMachineVideo" visible="false" src="#weirdMachineV" width="3.2" height="3.2" position="-5.6 7.67 27.34" rotation="30 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#weirdMachineV; visible:#weirdMachineVideo" src="#weirdMachine" width="3.2" height="3.2" position="-5.6 7.67 27.34" rotation="30 90 0"></a-image> 
+
+     <!--55-->
+     <a-video id="blueRobotVideo" visible="false" src="#blueRobotV" width="3.2" height="3.2" position="-5.6 7.67 30.54" rotation="30 90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#blueRobotV; visible:#blueRobotVideo" src="#blueRobot" width="3.2" height="3.2" position="-5.6 7.67 30.54" rotation="30 90 0"></a-image> 
+
+    </a-entity>
+
+<a-entity id="rigParedDerecha">
+     <!--Pared derecha -->
+    
+     <!--56-->
+     <a-video id="computerDarkAroundVideo" visible="false" src="#computerDarkAroundV" width="3.2" height="3.2" position="6.42 4.7 11.34" rotation="0 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#computerDarkAroundV; visible:#computerDarkAroundVideo" src="#computerDarkAround" width="3.2" height="3.2" position="6.42 4.7 11.34" rotation="0 -90 0"></a-image>
+
+     <!--57-->
+     <a-video id="cityAdsVideo" visible="false" src="#cityAdsV" width="3.2" height="3.2" position="6.42 1.5 11.34" rotation="0 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cityAdsV; visible:#cityAdsVideo" src="#cityAds" width="3.2" height="3.2" position="6.42 1.5 11.34" rotation="0 -90 0"></a-image>
+
+     <!--58-->
+     <a-video id="cyberDogVideo" visible="false" src="#cyberDogV" width="3.2" height="3.2" position="6.42 4.7 14.54" rotation="0 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyberDogV; visible:#cyberDogVideo" src="#cyberDog" width="3.2" height="3.2" position="6.42 4.7 14.54" rotation="0 -90 0"></a-image>
+
+     <!--59-->
+     <a-video id="cyborgFictionalVideo" visible="false" src="#cyborgFictionalV" width="3.2" height="3.2" position="6.42 1.5 14.54" rotation="0 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgFictionalV; visible:#cyborgFictionalVideo" src="#cyborgFictional" width="3.2" height="3.2" position="6.42 1.5 14.54" rotation="0 -90 0"></a-image>
+
+    <!--60-->
+    <a-video id="suitCameraVideo" visible="false" src="#suitCameraV" width="3.2" height="3.2" position="6.42 4.7 17.74" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#suitCameraV; visible:#suitCameraVideo" src="#suitCamera" width="3.2" height="3.2" position="6.42 4.7 17.74" rotation="0 -90 0"></a-image>
+
+    <!--61-->
+    <a-video id="keyboardArmsVideo" visible="false" src="#keyboardArmsV" width="3.2" height="3.2" position="6.42 1.5 17.74" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#keyboardArmsV; visible:#keyboardArmsVideo" src="#keyboardArms" width="3.2" height="3.2" position="6.42 1.5 17.74" rotation="0 -90 0"></a-image>
+
+
+    <!--62-->
+    <a-video id="floatingSilverVideo" visible="false" src="#floatingSilverV" width="3.2" height="3.2" position="6.42 4.7 20.94" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#floatingSilverV; visible:#floatingSilverVideo" src="#floatingSilver" width="3.2" height="3.2" position="6.42 4.7 20.94" rotation="0 -90 0"></a-image>
+ 
+
+    <!--63-->
+    <a-video id="roboticUnicornVideo" visible="false" src="#roboticUnicornV" width="3.2" height="3.2" position="6.42 1.5 20.94" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#roboticUnicornV; visible:#roboticUnicornVideo" src="#roboticUnicorn" width="3.2" height="3.2" position="6.42 1.5 20.94" rotation="0 -90 0"></a-image>
+
+    <!--64-->
+    <a-video id="socialMediaCakeVideo" visible="false" src="#socialMediaCakeV" width="3.2" height="3.2" position="6.42 4.7 24.14" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#socialMediaCakeV; visible:#socialMediaCakeVideo" src="#socialMediaCake" width="3.2" height="3.2" position="6.42 4.7 24.14" rotation="0 -90 0"></a-image>
+ 
+    <!--65-->
+    <a-video id="bitcoinXrayVideo" visible="false" src="#bitcoinXrayV" width="3.2" height="3.2" position="6.42 1.5 24.14" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#bitcoinXrayV; visible:#bitcoinXrayVideo" src="#bitcoinXray" width="3.2" height="3.2" position="6.42 1.5 24.14" rotation="0 -90 0"></a-image>
+
+    <!--66-->
+    <a-video id="computersAroundSexyVideo" visible="false" src="#computersAroundSexyV" width="3.2" height="3.2" position="6.42 4.7 27.34" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#computersAroundSexyV; visible:#computersAroundSexyVideo" src="#computersAroundSexy" width="3.2" height="3.2" position="6.42 4.7 27.34" rotation="0 -90 0"></a-image>
+ 
+
+    <!--68-->
+    <a-video id="rustyComputersGreenVideo" visible="false" src="#rustyComputersGreenV" width="3.2" height="3.2" position="6.42 1.5 27.34" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#rustyComputersGreenV; visible:#rustyComputersGreenVideo" src="#rustyComputersGreen" width="3.2" height="3.2" position="6.42 1.5 27.34" rotation="0 -90 0"></a-image>
+
+    <!--69-->
+    <a-video id="alienGodFacesVideo" visible="false" src="#alienGodFacesV" width="3.2" height="3.2" position="6.42 4.7 30.54" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#alienGodFacesV; visible:#alienGodFacesVideo" src="#alienGodFaces" width="3.2" height="3.2" position="6.42 4.7 30.54" rotation="0 -90 0"></a-image>
+ 
+
+    <!--71-->
+    <a-video id="computerRiverVideo" visible="false" src="#computerRiverV" width="3.2" height="3.2" position="6.42 1.5 30.54" rotation="0 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#computerRiverV; visible:#computerRiverVideo" src="#computerRiver" width="3.2" height="3.2" position="6.42 1.5 30.54" rotation="0 -90 0"></a-image>
+
+</a-entity>
+
+<a-entity id="rigInclinadosDerecha" position="-1.566 0.616 -0.710" rotation="0 0 -10">
+    <!--Inclinados laterales derecho-->
+    <!--70-->
+    <a-video id="flowersDarkSmartVideo2" visible="false" src="#flowersDarkSmartV" width="3.2" height="3.2" position="5.6 7.67 11.34" rotation="30 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#flowersDarkSmartV; visible:#flowersDarkSmartVideo" src="#flowersDarkSmart" width="3.2" height="3.2" position="5.6 7.67 11.34" rotation="30 -90 0"></a-image>
+
+    <!--71-->
+    <a-video id="dreamTvMachineVideo2" visible="false" src="#dreamTvMachineV" width="3.2" height="3.2" position="5.6 7.67 14.54" rotation="30 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#dreamTvMachineV; visible:#dreamTvMachineVideo" src="#dreamTvMachine" width="3.2" height="3.2" position="5.6 7.67 14.54" rotation="30 -90 0"></a-image>
+
+    <!--72-->
+    <a-video id="matrixForestVideo2" visible="false" src="#matrixForestV" width="3.2" height="3.2" position="5.6 7.67 17.74" rotation="30 -90 0"></a-video>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#matrixForestV; visible:#matrixForestVideo" src="#matrixForest" width="3.2" height="3.2" position="5.6 7.67 17.74" rotation="30 -90 0"></a-image>
+ 
+     <!--73-->
+     <a-video id="stockMarketForestVideo2" visible="false" src="#stockMarketForestV" width="3.2" height="3.2" position="5.6 7.67 20.94" rotation="30 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#stockMarketForestV; visible:#stockMarketForestVideo" src="#stockMarketForest" width="3.2" height="3.2" position="5.6 7.67 20.94" rotation="30 -90 0"></a-image>
+     
+     <!--74-->
+     <a-video id="cyborgDolphinsVideo2" visible="false" src="#cyborgDolphinsV" width="3.2" height="3.2" position="5.6 7.67 24.14" rotation="30 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgDolphinsV; visible:#cyborgDolphinsVideo" src="#cyborgDolphins" width="3.2" height="3.2" position="5.6 7.67 24.14" rotation="30 -90 0"></a-image>
+
+     <!--75-->
+     <a-video id="weirdMachineVideo2" visible="false" src="#weirdMachineV" width="3.2" height="3.2" position="5.6 7.67 27.34" rotation="30 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#weirdMachineV; visible:#weirdMachineVideo" src="#weirdMachine" width="3.2" height="3.2" position="5.6 7.67 27.34" rotation="30 -90 0"></a-image> 
+
+     <!--76-->
+     <a-video id="blueRobotVideo2" visible="false" src="#blueRobotV" width="3.2" height="3.2" position="5.6 7.67 30.54" rotation="30 -90 0"></a-video>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#blueRobotV; visible:#blueRobotVideo" src="#blueRobot" width="3.2" height="3.2" position="5.6 7.67 30.54" rotation="30 -90 0"></a-image> 
+
+    </a-entity>
+
+</a-entity>
+
+
+    <!--animation="property: rotation; from: 0 0 0; to: 0 360 0; loop: true; dur: 10000; easing: easeInOutElastic"-->
+
+    <a-entity
+    id="biblia"
+    class="clickeable"
+    raycaster-biblia
+    gltf-model="#bibliaSRC" scale="1 1 1" position="0 0.7 20" rotation="0 0 0" ></a-entity>
+
+    <!--Ethereum-->
+    <a-entity
+    id="etherModel"
+    class="clickeable"
+    visible="false"
+    raycaster-eth
+    animation="property: position; to: 0 2.7 20; dur: 1500; easing: easeInOutSine; loop: true; dir: alternate"
+    gltf-model="#etherSRC" scale="0.2 0.2 0.2" position="0 2 20" rotation="0 0 0"></a-entity>
+
+  <!--Luces-->
+
+  <a-entity id="ambientLight" light="type: ambient; color: #2d95aa; intensity: 4" position="-0.5 0.6 1" visible="true"></a-entity>
+
+  <a-entity  id="spotLight" position="0 4.5 20" rotation="-90 0 0" light="type: spot; angle: 40; intensity: 1; penumbra: 0.1; color: #e7a319" visible="false"></a-entity>
+
+
+    </a-scene>
+    
+</body>
+</html>

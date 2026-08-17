@@ -108,12 +108,9 @@ export default function GridHeader() {
             <div className="loading-glow-wrapper">
               <LoadingGlow />
             </div>
-            <span>Latest Collected</span>
+            <span>Prophecies</span>
           </div>
         </div>
-        <a className="grid-header-view-container" href="">
-          <div className="grid-header-view-text">View Unminted</div>
-        </a>
       </div>
     </GridHeaderStyles>
   );

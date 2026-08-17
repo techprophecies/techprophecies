@@ -1,0 +1,2 @@
+Vendored from https://github.com/techprophecies/meta-prophecies-tech (Feb 2022).
+Web3 / mint scripts removed. A-Frame scene, GLTF models, and JPEG planes kept.

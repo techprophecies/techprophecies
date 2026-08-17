@@ -1,19 +1,13 @@
 import Link from 'next/link';
-
-// CSS
 import styled from 'styled-components';
 
 const MenuStyles = styled.nav`
-  display: none;
-  justify-content: center;
+  display: flex;
+  justify-content: flex-end;
   flex-basis: 100%;
+  flex-wrap: wrap;
   @media (min-width: 52em) {
-    display: flex;
-    /* position: absolute;
-    bottom: -46px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2; */
+    flex-basis: auto;
   }
   a {
     font-family: var(--st--fonts-body);
@@ -35,9 +29,8 @@ const MenuStyles = styled.nav`
 export default function Menu() {
   return (
     <MenuStyles>
-      <Link href="/">Metaverse</Link>
-      <Link href="/">About</Link>
-      <Link href="/mint">Mint</Link>
+      <Link href="/metaverse">Metaverse</Link>
+      <Link href="/about">About</Link>
     </MenuStyles>
   );
 }

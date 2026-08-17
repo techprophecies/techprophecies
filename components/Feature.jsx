@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-// COMPONENTS
+import {works} from '../works';
 import {Background} from '../components';
 
 const FeatureStyles = styled.section`
@@ -93,9 +93,12 @@ const FeatureStyles = styled.section`
     display: flex;
     position: relative;
   }
+  .feature-asset-wrapper-inner img,
   .feature-asset-wrapper-inner video {
     width: 100%;
     height: 100%;
+    max-height: 400px;
+    object-fit: cover;
     margin-left: auto;
     margin-right: auto;
     transition: filter 0.3s ease-in-out 0s;
@@ -104,6 +107,7 @@ const FeatureStyles = styled.section`
     z-index: 50;
   }
   @media screen and (min-width: 40em) {
+    .feature-wrapper-inner img,
     .feature-wrapper-inner video {
       filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 20px 20px);
     }
@@ -179,35 +183,26 @@ const FeatureStyles = styled.section`
 `;
 
 export default function Feature() {
+  const featured = works[0];
+
   return (
     <FeatureStyles>
       <div className="feature-wrapper">
-        <a className="feature-asset-container" href="">
+        <a className="feature-asset-container" href="#grid-header">
           <div className="feature-asset-wrapper">
             <div className="feature-asset-wrapper-inner">
-              <video
-                src="https://res.cloudinary.com/react-graphql-store/video/upload/v1633133436/61_keyboard_over_man_with_arms_and_computer_head_udhzus.mp4"
-                poster="https://assets.foundation.app/b3/9a/Qmaz5dfqm2iqPchw9aXG8woTyFGfaeLnhKGovyiWszb39a/nft.jpg"
-                loop
-                autoPlay
-                playsInline
-              />
+              <img src={featured.image} alt={featured.name} />
             </div>
           </div>
         </a>
         <div className="feature-info-container">
           <div className="feature-info-wrapper">
             <div className="feature-info-title">
-              <h2>Tech Prophecy #87</h2>
-              <h3>
-                Even thou I scroll through the uncanny valley of neural
-                capitalism, I will fear no AI for your upvotes are with me, your
-                likes, your replies they comfort me.
-              </h3>
+              <h2>{featured.name}</h2>
+              <h3>{featured.description}</h3>
             </div>
           </div>
         </div>
-        - i2Symbol
       </div>
       <div className="card-background-wrapper">
         <Background />

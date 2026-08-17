@@ -1,12 +1,14 @@
 {
   "name": "techprophecies",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next dev",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
     "start": "next start",
-    "test": "mocha",
     "lint": "next lint"
   },
   "dependencies": {
@@ -15,79 +17,23 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hover-video-player": "^9.3.0",
-    "styled-components": "^5.2.1",
-    "web3": "^1.6.1"
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^11.1.2",
-    "@openzeppelin/contracts": "^4.3.2",
-    "@truffle/contract": "^4.3.38",
-    "@truffle/hdwallet-provider": "^1.5.1",
-    "autoprefixer": "^10.3.7",
-    "axios": "^0.20.0",
-    "babel-eslint": "^10.1.0",
     "babel-plugin-styled-components": "^1.13.3",
-    "dotenv": "^10.0.0",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.2",
-    "fs-extra": "^9.1.0",
-    "ipfs-http-client": "^50.1.2",
-    "postcss": "^8.3.9",
-    "solc": "^0.8.4",
-    "truffle": "^5.4.15",
-    "web3modal": "^1.9.4"
+    "eslint-config-next": "11.1.2"
   },
-  "//": "This is our babel config, I prefer this over a .babelrc file",
   "babel": {
     "env": {
       "development": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
+        "presets": ["next/babel"],
+        "plugins": [["styled-components", {"ssr": true, "displayName": true}]]
       },
       "production": {
-        "presets": [
-          "next/babel"
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
-      },
-      "test": {
-        "presets": [
-          [
-            "next/babel",
-            {
-              "preset-env": {
-                "modules": "commonjs"
-              }
-            }
-          ]
-        ],
-        "plugins": [
-          [
-            "styled-components",
-            {
-              "ssr": true,
-              "displayName": true
-            }
-          ]
-        ]
+        "presets": ["next/babel"],
+        "plugins": [["styled-components", {"ssr": true, "displayName": true}]]
       }
     }
   }

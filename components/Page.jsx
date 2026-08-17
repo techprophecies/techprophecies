@@ -154,17 +154,17 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 const InnerStyles = styled.div`
-  max-width: var(--maxWidth);
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 0;
 `;
 
-export default function Page({children}) {
+export default function Page({children, bare}) {
   return (
     <div className="page-container">
       <GlobalStyles />
-      <Header />
-      <InnerStyles>{children}</InnerStyles>
+      {!bare && <Header />}
+      {bare ? children : <InnerStyles>{children}</InnerStyles>}
     </div>
   );
 }

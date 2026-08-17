@@ -1,18 +1,49 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 
-// COMPONENTS
-import Video from './Video';
 import {Symbol} from '../components';
 
 const BannerStyles = styled.section`
-  z-index: 10000;
+  z-index: 4;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 100px 0 0 0;
-  height: 600px;
+  margin: 0;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  .space-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .enter-space {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 600;
+    color: #ffffff;
+    font-family: var(--st--fonts-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 12px 20px;
+    pointer-events: auto;
+  }
+  .enter-space:hover {
+    color: #00fff7;
+    border-color: #00fff7;
+  }
   div {
     position: relative;
     display: inline-block;
@@ -165,23 +196,29 @@ const BannerStyles = styled.section`
 export default function Banner() {
   return (
     <BannerStyles id="banner">
+      <iframe
+        className="space-frame"
+        src="/metaverse/index.html"
+        title="Tech Prophecies space"
+        tabIndex={-1}
+      />
       <div className="text-wrapper">
         <div>
-          <h3 className="banner-heading shine">OWN A TECH PROPHECY</h3>
-          <h3 className="banner-heading shine">OWN A TECH PROPHECY</h3>
+          <h3 className="banner-heading shine">TECH PROPHECIES</h3>
+          <h3 className="banner-heading shine">TECH PROPHECIES</h3>
         </div>
         <div>
-          <h3 className="banner-heading chrome">ON THE BLOCKCHAIN</h3>
-          <h3 className="banner-heading chrome">ON THE BLOCKCHAIN</h3>
+          <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
+          <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
         </div>
       </div>
 
       <div className="symbol-wrapper">
         <Symbol />
       </div>
-      {/* <div className="video-wrapper">
-        <Video vidUrl="https://res.cloudinary.com/react-graphql-store/video/upload/v1643166988/neural-chapel-test-ae_hwebjo.mp4" />
-      </div> */}
+      <Link href="/metaverse">
+        <a className="enter-space">Enter space</a>
+      </Link>
     </BannerStyles>
   );
 }

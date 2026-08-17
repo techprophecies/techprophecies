@@ -1,10 +1,6 @@
-import Link from 'next/link';
-
-// CSS
 import styled from 'styled-components';
 
-// COMPONENTS
-import {Logo, Menu, Wallet} from '../components';
+import {Logo, Menu} from '../components';
 
 const HeaderStyles = styled.header`
   margin: 0;
@@ -77,7 +73,6 @@ export default function Header() {
           <div className="header-inner">
             <div className="menu-wrapper">
               <Logo />
-              <Wallet />
               <Menu />
             </div>
           </div>
