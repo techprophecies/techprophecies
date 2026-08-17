@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import {works} from '../works';
 import Background from './Background';
+import Video from './Video';
 
 const FeatureStyles = styled.section`
   position: relative;
@@ -84,7 +85,8 @@ const FeatureStyles = styled.section`
     outline-color: rgba(0, 255, 247, 0.55);
   }
 
-  img {
+  img,
+  .hover-clip {
     width: 100%;
     height: auto;
     display: block;
@@ -95,8 +97,26 @@ const FeatureStyles = styled.section`
     transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
+  .hover-clip {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .hover-clip > div,
+  .hover-clip video,
+  .hover-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .feature-still:hover img,
-  .feature-still:focus-visible img {
+  .feature-still:focus-visible img,
+  .feature-still:hover .hover-clip,
+  .feature-still:focus-visible .hover-clip {
     transform: scale(1.04);
   }
 
@@ -173,6 +193,9 @@ const FeatureStyles = styled.section`
     .feature-still {
       transform: none;
     }
+    .hover-clip {
+      display: none;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -244,6 +267,11 @@ export default function Feature({onOpen}) {
         >
           <div className="frame">
             <img src={featured.image} alt="" />
+            {featured.video ? (
+              <span className="hover-clip">
+                <Video videoSrc={featured.video} poster={featured.image} />
+              </span>
+            ) : null}
             <span className="open-hint">Open</span>
           </div>
         </button>

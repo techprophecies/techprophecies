@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {useCallback, useRef} from 'react';
+import {useCallback, useRef, useState} from 'react';
 import styled from 'styled-components';
 
 import EnterVr from '../components/EnterVr';
@@ -13,6 +13,17 @@ const FrameStyles = styled.div`
     height: 100%;
     border: 0;
     display: block;
+    opacity: 0;
+    transition: opacity 480ms ease;
+  }
+  iframe.is-on {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    iframe {
+      opacity: 1;
+      transition: none;
+    }
   }
   .overlay {
     position: absolute;
@@ -95,6 +106,7 @@ const FrameStyles = styled.div`
 
 export default function MetaversePage() {
   const frame = useRef(null);
+  const [ready, setReady] = useState(false);
 
   const enterVr = useCallback(() => {
     const iframe = frame.current;
@@ -107,6 +119,21 @@ export default function MetaversePage() {
     } catch (error) {
       // Same-origin only; native A-Frame control remains as fallback.
     }
+  }, []);
+
+  const onFrameLoad = useCallback(() => {
+    const iframe = frame.current;
+    const scene =
+      iframe && iframe.contentDocument && iframe.contentDocument.querySelector('a-scene');
+    if (!scene) {
+      setReady(true);
+      return;
+    }
+    if (scene.hasLoaded) {
+      setReady(true);
+      return;
+    }
+    scene.addEventListener('loaded', () => setReady(true), {once: true});
   }, []);
 
   return (
@@ -127,9 +154,11 @@ export default function MetaversePage() {
       <EnterVr onClick={enterVr} label="Enter VR" />
       <iframe
         ref={frame}
+        className={ready ? 'is-on' : undefined}
         src="/metaverse/index.html"
         title="Tech Prophecies space"
         allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"
+        onLoad={onFrameLoad}
       />
     </FrameStyles>
   );

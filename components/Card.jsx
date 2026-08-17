@@ -1,6 +1,8 @@
 import {useCallback} from 'react';
 import styled from 'styled-components';
 
+import Video from './Video';
+
 const CardStyles = styled.button`
   display: block;
   width: 100%;
@@ -46,6 +48,22 @@ const CardStyles = styled.button`
     display: block;
     transform: scale(1);
     transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .hover-clip {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hover-clip > div,
+  .hover-clip video,
+  .hover-clip img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   &:hover .prophecy,
@@ -153,6 +171,9 @@ const CardStyles = styled.button`
     &:hover .prophecy {
       transform: none;
     }
+    .hover-clip {
+      display: none;
+    }
     .wash,
     .verse {
       opacity: 1;
@@ -191,6 +212,7 @@ const CardStyles = styled.button`
 
 export default function Card({
   image,
+  video,
   name,
   description,
   id,
@@ -223,6 +245,11 @@ export default function Card({
           alt=""
           loading={lazy ? 'lazy' : 'eager'}
         />
+        {video ? (
+          <span className="hover-clip">
+            <Video videoSrc={video} poster={image} className="prophecy" />
+          </span>
+        ) : null}
         <span className="wash" aria-hidden="true" />
         {description ? <p className="verse">{description}</p> : null}
       </div>

@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
 import styled from 'styled-components';
 
@@ -33,11 +33,31 @@ const Panel = styled.div`
     align-items: center;
   }
 
-  img {
+  img,
+  video {
     width: 100%;
     height: auto;
     display: block;
     background: #111;
+  }
+
+  .media {
+    position: relative;
+  }
+
+  .unmute {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 3;
+    background: rgba(0, 0, 0, 0.55);
+    border: 1px solid rgba(0, 255, 247, 0.45);
+    color: #00fff7;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 10px;
   }
 
   .copy {
@@ -142,6 +162,9 @@ const Panel = styled.div`
 `;
 
 export default function Lightbox({work, onClose, onPrev, onNext}) {
+  const videoRef = useRef(null);
+  const [needsUnmute, setNeedsUnmute] = useState(false);
+
   useEffect(() => {
     if (!work) return undefined;
 
@@ -161,9 +184,43 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
     };
   }, [work, onClose, onPrev, onNext]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !work || !work.video) {
+      setNeedsUnmute(false);
+      return undefined;
+    }
+
+    video.muted = false;
+    const play = video.play();
+    if (play && typeof play.catch === 'function') {
+      play.catch(() => {
+        video.muted = true;
+        setNeedsUnmute(true);
+        const mutedPlay = video.play();
+        if (mutedPlay && typeof mutedPlay.catch === 'function') {
+          mutedPlay.catch(() => {});
+        }
+      });
+    }
+
+    return () => {
+      video.pause();
+    };
+  }, [work]);
+
   if (typeof document === 'undefined' || !work) return null;
 
   const number = String(work.id).padStart(2, '0');
+
+  const unmute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = false;
+    const play = video.play();
+    if (play && typeof play.catch === 'function') play.catch(() => {});
+    setNeedsUnmute(false);
+  };
 
   return createPortal(
     <Overlay
@@ -192,7 +249,25 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
         >
           Next
         </button>
-        <img src={work.image} alt={work.name} />
+        <div className="media">
+          {work.video ? (
+            <video
+              ref={videoRef}
+              src={work.video}
+              poster={work.image}
+              controls
+              playsInline
+              loop
+            />
+          ) : (
+            <img src={work.image} alt={work.name} />
+          )}
+          {needsUnmute ? (
+            <button className="unmute" type="button" onClick={unmute}>
+              Unmute
+            </button>
+          ) : null}
+        </div>
         <div className="copy">
           <p className="number">
             {number} · VQGAN+CLIP · 2021

@@ -31,6 +31,36 @@ function clearProphecyHud() {
   hud.classList.remove('is-on');
 }
 
+function videoUrlForKey(key) {
+  const data = window.PROPHECIES && window.PROPHECIES[key];
+  if (!data || !window.VIDEOS) return '';
+  return window.VIDEOS[data.n] || window.VIDEOS[String(data.n)] || '';
+}
+
+function armCloudinaryVideo(video, key) {
+  const url = videoUrlForKey(key);
+  if (!url || !video) return false;
+  video.muted = true;
+  video.defaultMuted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.setAttribute('playsinline', '');
+  video.preload = 'none';
+  if (video.getAttribute('data-src') !== url) {
+    video.setAttribute('data-src', url);
+    video.src = url;
+    if (typeof video.load === 'function') video.load();
+  }
+  return true;
+}
+
+function videoUsable(video) {
+  if (!video || typeof video.play !== 'function') return false;
+  if (video.error) return false;
+  if (video.networkState === 3) return false;
+  return video.readyState >= 2;
+}
+
 AFRAME.registerComponent('raycaster-img', {
   schema: {
     video: {type: 'selector'},
@@ -44,30 +74,44 @@ AFRAME.registerComponent('raycaster-img', {
     const videoVisible = this.data.visible;
     const restScale = el.getAttribute('scale') || {x: 1, y: 1, z: 1};
     const key = prophecyKeyFromEl(el, this.data.key);
+    let playToken = 0;
 
-    function videoUsable(video) {
-      if (!video || typeof video.play !== 'function') return false;
-      if (video.error) return false;
-      if (video.networkState === 3) return false;
-      return video.readyState >= 2;
+    function showClip() {
+      if (videoVisible) videoVisible.setAttribute('visible', 'true');
+      el.setAttribute('visible', 'false');
     }
 
     this.el.addEventListener('mouseenter', () => {
+      const token = ++playToken;
       el.setAttribute('scale', '1.06 1.06 1.06');
       fillProphecyHud(key);
+
+      const armed = armCloudinaryVideo(videoToPlay, key);
+      if (!armed) {
+        el.setAttribute('material', 'opacity', 0.92);
+        return;
+      }
 
       if (videoUsable(videoToPlay)) {
         const play = videoToPlay.play();
         if (play && typeof play.catch === 'function') play.catch(function () {});
-        if (videoVisible) videoVisible.setAttribute('visible', 'true');
-        el.setAttribute('visible', 'false');
+        showClip();
         return;
       }
 
+      const onReady = function () {
+        if (token !== playToken) return;
+        videoToPlay.removeEventListener('canplay', onReady);
+        const play = videoToPlay.play();
+        if (play && typeof play.catch === 'function') play.catch(function () {});
+        showClip();
+      };
+      videoToPlay.addEventListener('canplay', onReady);
       el.setAttribute('material', 'opacity', 0.92);
     });
 
     this.el.addEventListener('mouseleave', () => {
+      playToken += 1;
       el.setAttribute(
         'scale',
         restScale.x + ' ' + restScale.y + ' ' + restScale.z,
@@ -78,8 +122,9 @@ AFRAME.registerComponent('raycaster-img', {
 
       if (videoToPlay && typeof videoToPlay.pause === 'function') {
         videoToPlay.pause();
-        videoToPlay.currentTime = 0;
-        if (typeof videoToPlay.load === 'function') videoToPlay.load();
+        try {
+          videoToPlay.currentTime = 0;
+        } catch (error) {}
       }
       if (videoVisible) videoVisible.setAttribute('visible', 'false');
     });
