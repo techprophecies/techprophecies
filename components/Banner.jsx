@@ -3,7 +3,6 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 import Symbol from './Symbol';
-import EnterVr from './EnterVr';
 
 const BannerStyles = styled.section`
   z-index: 4;
@@ -29,49 +28,21 @@ const BannerStyles = styled.section`
     bottom: max(24px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
-    z-index: 700;
+    z-index: 600;
     color: #ffffff;
-    font-family: 'TechProphecy', serif;
-    font-size: clamp(16px, 2.4vw, 22px);
-    font-weight: 200;
-    letter-spacing: 0.16em;
+    font-family: var(--st--fonts-body);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid rgba(0, 255, 247, 0.55);
-    padding: 14px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 12px 20px;
     pointer-events: auto;
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 22px rgba(0, 255, 247, 0.28);
-    transition: color 180ms ease, border-color 180ms ease, background 180ms ease,
-      box-shadow 180ms ease, transform 220ms cubic-bezier(0.23, 1, 0.32, 1),
-      letter-spacing 180ms ease;
   }
-  .enter-space:hover,
-  .enter-space:focus-visible {
+  .enter-space:hover {
     color: #00fff7;
     border-color: #00fff7;
-    background: rgba(0, 255, 247, 0.12);
-    box-shadow: 0 0 34px rgba(0, 255, 247, 0.55);
-    transform: translateX(-50%) scale(1.06);
-    letter-spacing: 0.22em;
-    outline: none;
-  }
-  .enter-space:active {
-    transform: translateX(-50%) scale(0.97);
-  }
-  @media (max-width: 40em) {
-    .enter-space {
-      padding: 12px 18px;
-      right: 84px;
-      left: 16px;
-      transform: none;
-      text-align: center;
-    }
-    .enter-space:hover,
-    .enter-space:focus-visible,
-    .enter-space:active {
-      transform: none;
-    }
   }
   div {
     position: relative;
@@ -85,14 +56,10 @@ const BannerStyles = styled.section`
     display: inline-block;
     height: clamp(120px, 26vh, 225px);
     width: 100%;
-    z-index: 700;
-    pointer-events: none;
+    z-index: 500;
   }
-  div.text-wrapper .enter-heading {
-    pointer-events: auto;
-  }
-  div.text-wrapper > div,
-  div.text-wrapper .enter-heading {
+  div.text-wrapper > div {
+    position: relative;
     position: relative;
     width: 100%;
     height: 50%;
@@ -100,22 +67,6 @@ const BannerStyles = styled.section`
     align-items: center;
     justify-content: center;
     flex: 1;
-    text-decoration: none;
-    pointer-events: auto;
-    z-index: 700;
-  }
-  .enter-heading .banner-heading {
-    transition: filter 220ms ease, letter-spacing 220ms ease,
-      transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
-  }
-  .enter-heading:hover .banner-heading,
-  .enter-heading:focus-visible .banner-heading {
-    filter: drop-shadow(0 0 18px rgba(0, 255, 247, 0.7));
-    letter-spacing: 0.16em;
-    outline: none;
-  }
-  .enter-heading:active .banner-heading {
-    transform: scale(0.98);
   }
   div.video-wrapper {
     background: green;
@@ -240,8 +191,6 @@ const BannerStyles = styled.section`
     left: 0;
     right: 0;
     max-width: min(500px, 78vw);
-    z-index: 1;
-    pointer-events: none;
   }
 `;
 
@@ -259,21 +208,18 @@ export default function Banner() {
           <h3 className="banner-heading shine">TECH PROPHECIES</h3>
           <h3 className="banner-heading shine">TECH PROPHECIES</h3>
         </div>
-        <Link href="/metaverse">
-          <a className="enter-heading" aria-label="Enter the space">
-            <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
-            <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
-          </a>
-        </Link>
+        <div>
+          <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
+          <h3 className="banner-heading chrome">ENTER THE SPACE</h3>
+        </div>
       </div>
 
       <div className="symbol-wrapper">
         <Symbol />
       </div>
       <Link href="/metaverse">
-        <a className="enter-space">Enter the space</a>
+        <a className="enter-space">Enter space</a>
       </Link>
-      <EnterVr href="/metaverse" />
     </BannerStyles>
   );
 }
