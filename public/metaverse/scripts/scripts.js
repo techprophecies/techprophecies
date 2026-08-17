@@ -1,7 +1,41 @@
+function prophecyKeyFromEl(el, key) {
+  if (key) return key;
+  const src =
+    (el.getDOMAttribute && el.getDOMAttribute('src')) ||
+    el.getAttribute('src') ||
+    '';
+  return String(src).replace(/^#/, '');
+}
+
+function fillProphecyHud(key) {
+  const hud = document.getElementById('prophecy-hud');
+  if (!hud) return;
+  const data = window.PROPHECIES && window.PROPHECIES[key];
+  if (!data) {
+    hud.classList.remove('is-on');
+    return;
+  }
+
+  const number = String(data.n).padStart(2, '0');
+  const rarity = data.rarity ? data.rarity + ' · ' : '';
+  hud.querySelector('.meta').textContent =
+    number + ' · ' + rarity + 'VQGAN+CLIP · 2021';
+  hud.querySelector('.title').textContent = data.title || '';
+  hud.querySelector('.verse').textContent = data.verse || '';
+  hud.classList.add('is-on');
+}
+
+function clearProphecyHud() {
+  const hud = document.getElementById('prophecy-hud');
+  if (!hud) return;
+  hud.classList.remove('is-on');
+}
+
 AFRAME.registerComponent('raycaster-img', {
   schema: {
     video: {type: 'selector'},
     visible: {type: 'selector'},
+    key: {type: 'string', default: ''},
   },
 
   init: function () {
@@ -9,6 +43,7 @@ AFRAME.registerComponent('raycaster-img', {
     const videoToPlay = this.data.video;
     const videoVisible = this.data.visible;
     const restScale = el.getAttribute('scale') || {x: 1, y: 1, z: 1};
+    const key = prophecyKeyFromEl(el, this.data.key);
 
     function videoUsable(video) {
       if (!video || typeof video.play !== 'function') return false;
@@ -19,6 +54,7 @@ AFRAME.registerComponent('raycaster-img', {
 
     this.el.addEventListener('mouseenter', () => {
       el.setAttribute('scale', '1.06 1.06 1.06');
+      fillProphecyHud(key);
 
       if (videoUsable(videoToPlay)) {
         const play = videoToPlay.play();
@@ -38,6 +74,7 @@ AFRAME.registerComponent('raycaster-img', {
       );
       el.setAttribute('material', 'opacity', 1);
       el.setAttribute('visible', 'true');
+      clearProphecyHud();
 
       if (videoToPlay && typeof videoToPlay.pause === 'function') {
         videoToPlay.pause();
@@ -54,21 +91,15 @@ AFRAME.registerComponent('raycaster-biblia', {
     document.querySelector('a-scene').addEventListener('loaded', () => {
       const ambientLight = document.getElementById('ambientLight');
       const spotLight = document.getElementById('spotLight');
-      const etherModel = document.getElementById('etherModel');
-      const images = document.getElementById('todos');
 
       this.el.addEventListener('mouseenter', () => {
         if (ambientLight) ambientLight.setAttribute('visible', 'false');
         if (spotLight) spotLight.setAttribute('visible', 'true');
-        if (images) images.setAttribute('visible', 'false');
-        if (etherModel) etherModel.setAttribute('visible', 'true');
       });
 
       this.el.addEventListener('mouseleave', () => {
         if (ambientLight) ambientLight.setAttribute('visible', 'true');
         if (spotLight) spotLight.setAttribute('visible', 'false');
-        if (images) images.setAttribute('visible', 'true');
-        if (etherModel) etherModel.setAttribute('visible', 'false');
       });
     });
   },

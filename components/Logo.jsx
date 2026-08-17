@@ -24,7 +24,7 @@ const LogoStyles = styled.div`
 
   a:hover,
   a:focus-visible {
-    transform: scale(1.08) rotate(-6deg);
+    transform: scale(1.08);
     filter: drop-shadow(0 0 10px rgba(0, 255, 247, 0.45));
     outline: none;
   }

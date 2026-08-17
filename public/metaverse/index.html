@@ -6,10 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+    <script src="scripts/prophecies.js"></script>
     <script src="scripts/scripts.js"></script>
     <title>Tech Prophecies</title>
+    <style>
+        @font-face {
+            font-family: 'TechProphecy';
+            src: url('/assets/fonts/CloisterBlack.woff');
+        }
+        #prophecy-hud {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            pointer-events: none;
+            padding: 48px 24px calc(28px + env(safe-area-inset-bottom));
+            background: linear-gradient(
+                transparent,
+                rgba(0, 0, 0, 0.55) 35%,
+                rgba(0, 0, 0, 0.92)
+            );
+            color: #fff;
+            opacity: 0;
+            transition: opacity 180ms ease;
+            font-family: 'TechProphecy', serif;
+        }
+        #prophecy-hud.is-on {
+            opacity: 1;
+        }
+        #prophecy-hud .meta {
+            margin: 0 0 8px;
+            color: #00fff7;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 200;
+            text-shadow: 0 0 12px rgba(0, 255, 247, 0.55);
+        }
+        #prophecy-hud .title {
+            margin: 0 0 10px;
+            font-size: clamp(1.5rem, 3.2vw, 2.2rem);
+            font-weight: 200;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 10px #fff, 1px 1px 8px #ccc;
+            line-height: 1.1;
+        }
+        #prophecy-hud .verse {
+            margin: 0;
+            max-width: 46rem;
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.45;
+            color: #f2f2f2;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.85);
+        }
+    </style>
 </head>
 <body>
+    <div id="prophecy-hud" aria-live="polite">
+        <p class="meta"></p>
+        <p class="title"></p>
+        <p class="verse"></p>
+    </div>
     <a-scene>
 
         <a-assets>
@@ -306,9 +365,6 @@
             <!--Biblia-->
             <a-asset-item id="bibliaSRC" src="modelos/bibliaFinal.glb" ></a-asset-item>
         
-          <!--Ether-->
-          <a-asset-item id="etherSRC" src="modelos/ether.glb" ></a-asset-item>
-        
         
         </a-assets>
         
@@ -330,7 +386,7 @@
         </a-entity>
 
 
- <a-entity id="todos" visible="false">           
+ <a-entity id="todos" visible="true">           
         <!--1-->
         <a-video id="cyberWomanVideo" visible="false" src="#cyberWomanV" width="3.2" height="3.2" position="0 1.5 7"></a-video>
         <a-image class="clickeable"  visible="true" raycaster-img="video:#cyberWomanV; visible:#cyberWomanVideo" src="#cyberWoman" width="3.2" height="3.2" position="0 1.5 7"></a-image>
@@ -644,31 +700,31 @@ r
     <!--Inclinados laterales derecho-->
     <!--70-->
     <a-video id="flowersDarkSmartVideo2" visible="false" src="#flowersDarkSmartV" width="3.2" height="3.2" position="5.6 7.67 11.34" rotation="30 -90 0"></a-video>
-    <a-image class="clickeable"  visible="true" raycaster-img="video:#flowersDarkSmartV; visible:#flowersDarkSmartVideo" src="#flowersDarkSmart" width="3.2" height="3.2" position="5.6 7.67 11.34" rotation="30 -90 0"></a-image>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#flowersDarkSmartV; visible:#flowersDarkSmartVideo2" src="#flowersDarkSmart" width="3.2" height="3.2" position="5.6 7.67 11.34" rotation="30 -90 0"></a-image>
 
     <!--71-->
     <a-video id="dreamTvMachineVideo2" visible="false" src="#dreamTvMachineV" width="3.2" height="3.2" position="5.6 7.67 14.54" rotation="30 -90 0"></a-video>
-    <a-image class="clickeable"  visible="true" raycaster-img="video:#dreamTvMachineV; visible:#dreamTvMachineVideo" src="#dreamTvMachine" width="3.2" height="3.2" position="5.6 7.67 14.54" rotation="30 -90 0"></a-image>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#dreamTvMachineV; visible:#dreamTvMachineVideo2" src="#dreamTvMachine" width="3.2" height="3.2" position="5.6 7.67 14.54" rotation="30 -90 0"></a-image>
 
     <!--72-->
     <a-video id="matrixForestVideo2" visible="false" src="#matrixForestV" width="3.2" height="3.2" position="5.6 7.67 17.74" rotation="30 -90 0"></a-video>
-    <a-image class="clickeable"  visible="true" raycaster-img="video:#matrixForestV; visible:#matrixForestVideo" src="#matrixForest" width="3.2" height="3.2" position="5.6 7.67 17.74" rotation="30 -90 0"></a-image>
+    <a-image class="clickeable"  visible="true" raycaster-img="video:#matrixForestV; visible:#matrixForestVideo2" src="#matrixForest" width="3.2" height="3.2" position="5.6 7.67 17.74" rotation="30 -90 0"></a-image>
  
      <!--73-->
      <a-video id="stockMarketForestVideo2" visible="false" src="#stockMarketForestV" width="3.2" height="3.2" position="5.6 7.67 20.94" rotation="30 -90 0"></a-video>
-     <a-image class="clickeable"  visible="true" raycaster-img="video:#stockMarketForestV; visible:#stockMarketForestVideo" src="#stockMarketForest" width="3.2" height="3.2" position="5.6 7.67 20.94" rotation="30 -90 0"></a-image>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#stockMarketForestV; visible:#stockMarketForestVideo2" src="#stockMarketForest" width="3.2" height="3.2" position="5.6 7.67 20.94" rotation="30 -90 0"></a-image>
      
      <!--74-->
      <a-video id="cyborgDolphinsVideo2" visible="false" src="#cyborgDolphinsV" width="3.2" height="3.2" position="5.6 7.67 24.14" rotation="30 -90 0"></a-video>
-     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgDolphinsV; visible:#cyborgDolphinsVideo" src="#cyborgDolphins" width="3.2" height="3.2" position="5.6 7.67 24.14" rotation="30 -90 0"></a-image>
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#cyborgDolphinsV; visible:#cyborgDolphinsVideo2" src="#cyborgDolphins" width="3.2" height="3.2" position="5.6 7.67 24.14" rotation="30 -90 0"></a-image>
 
      <!--75-->
      <a-video id="weirdMachineVideo2" visible="false" src="#weirdMachineV" width="3.2" height="3.2" position="5.6 7.67 27.34" rotation="30 -90 0"></a-video>
-     <a-image class="clickeable"  visible="true" raycaster-img="video:#weirdMachineV; visible:#weirdMachineVideo" src="#weirdMachine" width="3.2" height="3.2" position="5.6 7.67 27.34" rotation="30 -90 0"></a-image> 
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#weirdMachineV; visible:#weirdMachineVideo2" src="#weirdMachine" width="3.2" height="3.2" position="5.6 7.67 27.34" rotation="30 -90 0"></a-image> 
 
      <!--76-->
      <a-video id="blueRobotVideo2" visible="false" src="#blueRobotV" width="3.2" height="3.2" position="5.6 7.67 30.54" rotation="30 -90 0"></a-video>
-     <a-image class="clickeable"  visible="true" raycaster-img="video:#blueRobotV; visible:#blueRobotVideo" src="#blueRobot" width="3.2" height="3.2" position="5.6 7.67 30.54" rotation="30 -90 0"></a-image> 
+     <a-image class="clickeable"  visible="true" raycaster-img="video:#blueRobotV; visible:#blueRobotVideo2" src="#blueRobot" width="3.2" height="3.2" position="5.6 7.67 30.54" rotation="30 -90 0"></a-image> 
 
     </a-entity>
 
@@ -682,15 +738,6 @@ r
     class="clickeable"
     raycaster-biblia
     gltf-model="#bibliaSRC" scale="1 1 1" position="0 0.7 20" rotation="0 0 0" ></a-entity>
-
-    <!--Ethereum-->
-    <a-entity
-    id="etherModel"
-    class="clickeable"
-    visible="false"
-    raycaster-eth
-    animation="property: position; to: 0 2.7 20; dur: 1500; easing: easeInOutSine; loop: true; dir: alternate"
-    gltf-model="#etherSRC" scale="0.2 0.2 0.2" position="0 2 20" rotation="0 0 0"></a-entity>
 
   <!--Luces-->
 

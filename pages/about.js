@@ -88,6 +88,11 @@ export default function About() {
         Each Prophecy is unique and no two are exactly alike. The combination of
         a Tech Prophecy aesthetics was randomly generated from neural noise.
       </p>
+      <h3 className="label">Medium</h3>
+      <p>
+        The stills were generated in 2021 with VQGAN+CLIP, a CLIP-guided GAN,
+        earlier than Stable Diffusion.
+      </p>
       <p>
         There are Tech Prophecies created by different machine learning models
         and have different attributes influencing the rarity.
@@ -118,7 +123,7 @@ export default function About() {
         Every Tech Prophecy is a verse in the religious techno singularity
         scripture. Images are programmatically generated with a variety of
         subjects, authors, and more. The stills live here as a public cycle.
-        The space is an A-Frame environment with a GLTF bible / ether.
+        The space is an A-Frame environment with a GLTF bible.
       </p>
 
       <h2>We are the clergy | Creators</h2>

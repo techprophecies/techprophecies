@@ -24,6 +24,7 @@ export {default as Video} from './Video';
 // FRONT PAGE
 export {default as Banner} from './Banner';
 export {default as Symbol} from './Symbol';
+export {default as EnterVr} from './EnterVr';
 
 // EFFECTS
 export {default as LoadingGlow} from './LoadingGlow';

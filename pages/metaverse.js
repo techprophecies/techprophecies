@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import {useCallback, useRef} from 'react';
 import styled from 'styled-components';
+
+import EnterVr from '../components/EnterVr';
 
 const FrameStyles = styled.div`
   position: fixed;
@@ -91,6 +94,21 @@ const FrameStyles = styled.div`
 `;
 
 export default function MetaversePage() {
+  const frame = useRef(null);
+
+  const enterVr = useCallback(() => {
+    const iframe = frame.current;
+    if (!iframe) return;
+    try {
+      const scene = iframe.contentDocument && iframe.contentDocument.querySelector('a-scene');
+      if (scene && typeof scene.enterVR === 'function') {
+        scene.enterVR();
+      }
+    } catch (error) {
+      // Same-origin only; native A-Frame control remains as fallback.
+    }
+  }, []);
+
   return (
     <FrameStyles>
       <div className="overlay">
@@ -106,7 +124,9 @@ export default function MetaversePage() {
           <a>About</a>
         </Link>
       </div>
+      <EnterVr onClick={enterVr} label="Enter VR" />
       <iframe
+        ref={frame}
         src="/metaverse/index.html"
         title="Tech Prophecies space"
         allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"

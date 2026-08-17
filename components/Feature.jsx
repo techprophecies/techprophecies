@@ -249,7 +249,7 @@ export default function Feature({onOpen}) {
         </button>
         <div>
           <p className="label">
-            Selected work · {number}
+            Selected work · {number} · VQGAN+CLIP · 2021
             {featured.rarity ? ` · ${featured.rarity}` : ''}
           </p>
           <h2 className="name">{featured.name}</h2>

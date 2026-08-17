@@ -194,7 +194,10 @@ export default function Lightbox({work, onClose, onPrev, onNext}) {
         </button>
         <img src={work.image} alt={work.name} />
         <div className="copy">
-          <p className="number">{number}</p>
+          <p className="number">
+            {number} · VQGAN+CLIP · 2021
+            {work.rarity ? ` · ${work.rarity}` : ''}
+          </p>
           <h2>{work.name}</h2>
           {work.description ? <p>{work.description}</p> : null}
           {work.rarity || work.subject || work.type || work.element || work.entropy ? (
