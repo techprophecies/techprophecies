@@ -1,5 +1,8 @@
 import Link from 'next/link';
+import {useCallback, useRef} from 'react';
 import styled from 'styled-components';
+
+import EnterVr from '../components/EnterVr';
 
 const FrameStyles = styled.div`
   position: fixed;
@@ -13,40 +16,105 @@ const FrameStyles = styled.div`
   }
   .overlay {
     position: absolute;
-    top: 16px;
-    left: 16px;
+    top: max(12px, env(safe-area-inset-top));
+    left: max(12px, env(safe-area-inset-left));
+    right: max(12px, env(safe-area-inset-right));
     z-index: 10;
     display: flex;
     align-items: center;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 4px 8px;
     pointer-events: none;
+  }
+  @media (max-width: 40em) {
+    .overlay a {
+      font-size: 12px;
+      padding: 8px 8px;
+      letter-spacing: 0.06em;
+    }
   }
   .overlay a {
     pointer-events: auto;
-    color: #fff;
-    font-family: var(--st--fonts-body);
-    font-size: 14px;
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: 'TechProphecy', serif;
+    font-size: 15px;
+    font-weight: 200;
     text-decoration: none;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    position: relative;
+    transition: color 180ms ease, letter-spacing 180ms ease,
+      text-shadow 180ms ease;
   }
-  .overlay a:hover {
+  .overlay a::after {
+    content: '';
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 4px;
+    height: 1px;
+    background: #00fff7;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .overlay a:hover,
+  .overlay a:focus-visible {
     color: #00fff7;
+    letter-spacing: 0.18em;
+    text-shadow: 0 0 12px rgba(0, 255, 247, 0.45);
+    outline: none;
+  }
+  .overlay a:hover::after,
+  .overlay a:focus-visible::after {
+    transform: scaleX(1);
+  }
+  .overlay .mark {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay .mark::after {
+    display: none;
+  }
+  .overlay .mark:hover {
+    letter-spacing: 0;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 247, 0.45));
   }
   .overlay img {
     height: 36px;
-    width: auto;
+    width: 36px;
+    object-fit: contain;
     display: block;
   }
 `;
 
 export default function MetaversePage() {
+  const frame = useRef(null);
+
+  const enterVr = useCallback(() => {
+    const iframe = frame.current;
+    if (!iframe) return;
+    try {
+      const scene = iframe.contentDocument && iframe.contentDocument.querySelector('a-scene');
+      if (scene && typeof scene.enterVR === 'function') {
+        scene.enterVR();
+      }
+    } catch (error) {
+      // Same-origin only; native A-Frame control remains as fallback.
+    }
+  }, []);
+
   return (
     <FrameStyles>
       <div className="overlay">
         <Link href="/">
-          <a>
-            <img src="/assets/icons/tech-prophecies-logo.png" alt="Tech Prophecies" />
+          <a className="mark" aria-label="Tech Prophecies home">
+            <img src="/assets/icons/tech-prophecies-logo.png" alt="" />
           </a>
         </Link>
         <Link href="/">
@@ -56,7 +124,9 @@ export default function MetaversePage() {
           <a>About</a>
         </Link>
       </div>
+      <EnterVr onClick={enterVr} label="Enter VR" />
       <iframe
+        ref={frame}
         src="/metaverse/index.html"
         title="Tech Prophecies space"
         allow="fullscreen; xr-spatial-tracking; gyroscope; accelerometer"

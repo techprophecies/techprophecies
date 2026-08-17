@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import {Symbol} from '../components';
+import Symbol from './Symbol';
 
 const BannerStyles = styled.section`
   z-index: 4;
@@ -11,8 +11,8 @@ const BannerStyles = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  height: 100vh;
-  min-height: 600px;
+  height: 100svh;
+  min-height: 100svh;
   overflow: hidden;
   .space-frame {
     position: absolute;
@@ -25,7 +25,7 @@ const BannerStyles = styled.section`
   }
   .enter-space {
     position: absolute;
-    bottom: 48px;
+    bottom: max(24px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 600;
@@ -54,7 +54,8 @@ const BannerStyles = styled.section`
     align-items: flex-end;
     position: relative;
     display: inline-block;
-    height: 225px;
+    height: clamp(120px, 26vh, 225px);
+    width: 100%;
     z-index: 500;
   }
   div.text-wrapper > div {
@@ -80,7 +81,7 @@ const BannerStyles = styled.section`
   }
 
   .banner-heading {
-    font-size: 80px;
+    font-size: clamp(28px, 9vw, 80px);
     font-family: 'TechProphecy', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -96,7 +97,7 @@ const BannerStyles = styled.section`
     width: 100%;
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 0.12em;
     /* background: linear-gradient(#262626, white, #262626); */
     -webkit-background-clip: text;
     color: transparent;
@@ -189,7 +190,7 @@ const BannerStyles = styled.section`
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: 500px;
+    max-width: min(500px, 78vw);
   }
 `;
 

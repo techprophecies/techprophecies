@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback} from 'react';
 import styled from 'styled-components';
 
 import {works} from '../works';
@@ -13,24 +13,27 @@ const GridStyles = styled.section`
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 1600px;
-  padding: 0 24px;
+  max-width: 1760px;
+  padding: 0 16px;
   position: relative;
   z-index: 4;
+  @media (min-width: 52em) {
+    padding: 0 24px;
+  }
   .grid-wrapper {
     position: relative;
     width: 100%;
     min-width: 0;
-    max-width: 1600px;
+    max-width: 1760px;
     margin: 0 auto;
-    padding: 0 0 96px;
+    padding: 0 0 max(72px, env(safe-area-inset-bottom));
     box-sizing: border-box;
     z-index: 4;
   }
   .grid-wrapper-inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 32px 20px;
+    gap: 28px 16px;
   }
   @media (min-width: 40em) {
     .grid-wrapper-inner {
@@ -48,22 +51,20 @@ const GridStyles = styled.section`
       grid-template-columns: repeat(4, 1fr);
     }
   }
+  @media (min-width: 96em) {
+    .grid-wrapper-inner {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
 `;
 
-export default function Grid() {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const close = useCallback(() => setActiveIndex(null), []);
-  const prev = useCallback(() => {
-    setActiveIndex((index) =>
-      index == null ? index : (index + works.length - 1) % works.length,
-    );
-  }, []);
-  const next = useCallback(() => {
-    setActiveIndex((index) =>
-      index == null ? index : (index + 1) % works.length,
-    );
-  }, []);
+export default function Grid({activeIndex, onOpen, onClose, onPrev, onNext}) {
+  const open = useCallback(
+    (index) => {
+      if (onOpen) onOpen(index);
+    },
+    [onOpen],
+  );
 
   const active = activeIndex == null ? null : works[activeIndex];
 
@@ -79,14 +80,15 @@ export default function Grid() {
               image={work.image}
               name={work.name}
               description={work.description}
+              rarity={work.rarity}
               lazy={index > 7}
-              onOpen={() => setActiveIndex(index)}
+              onOpen={() => open(index)}
             />
           ))}
         </div>
       </div>
       {active ? (
-        <Lightbox work={active} onClose={close} onPrev={prev} onNext={next} />
+        <Lightbox work={active} onClose={onClose} onPrev={onPrev} onNext={onNext} />
       ) : null}
     </GridStyles>
   );

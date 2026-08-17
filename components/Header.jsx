@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import {Logo, Menu} from '../components';
+import Logo from './Logo';
+import Menu from './Menu';
 
 const HeaderStyles = styled.header`
   margin: 0;
@@ -24,32 +25,31 @@ const HeaderStyles = styled.header`
     margin: 0;
     min-width: 0;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1760px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 24px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: 8px;
+  }
+  @media (min-width: 52em) {
+    .header-inner {
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 16px;
+    }
   }
   .menu-wrapper {
     margin: 0;
     min-width: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: justify;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
+    flex-wrap: nowrap;
     align-items: center;
+    gap: 12px;
     position: relative;
+    min-height: 44px;
   }
   .bar {
     border-bottom: 10px solid var(--black, black);

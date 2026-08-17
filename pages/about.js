@@ -6,45 +6,70 @@ const AboutStyles = styled.div`
   z-index: 5;
   color: #c5c5c5;
   font-family: 'TechProphecy-Regular', Georgia, serif;
-  font-size: 1.15rem;
+  font-size: clamp(1rem, 2.1vw, 1.2rem);
   font-weight: 200;
-  line-height: 1.6;
+  line-height: 1.55;
   max-width: 720px;
   margin: 0 auto;
-  padding: 72px 24px 120px;
+  padding: 48px 16px 96px;
+  padding-bottom: max(96px, env(safe-area-inset-bottom));
+
+  @media (min-width: 52em) {
+    padding: 72px 24px 120px;
+  }
+
   h1 {
     font-family: 'TechProphecy', serif;
     color: #fff;
     font-weight: 200;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-size: 2.4rem;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
     margin: 0 0 8px;
+    text-shadow: 1px 1px 8px #fff, 1px 1px 8px #ccc;
   }
+
   .meta {
     color: #8bacda;
     font-size: 0.95rem;
     margin: 0 0 32px;
   }
-  h2 {
+
+  h2,
+  h3.label {
     color: #fff;
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    font-family: 'TechProphecy', serif;
+    font-size: 1.15rem;
+    font-weight: 200;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin: 32px 0 12px;
+    margin: 36px 0 12px;
   }
+
   p {
     margin: 0 0 1em;
   }
+
   ul {
     margin: 0 0 1.5em;
     padding-left: 1.2em;
   }
+
+  .rarity li {
+    margin-bottom: 0.35em;
+  }
+
+  .creators {
+    display: grid;
+    gap: 8px;
+    margin: 0 0 1.5em;
+  }
+
   a {
     color: #00fff7;
     text-decoration: none;
   }
+
   a:hover {
     text-decoration: underline;
   }
@@ -55,40 +80,69 @@ export default function About() {
     <AboutStyles id="about">
       <h1>Tech Prophecies</h1>
       <p className="meta">
-        Moises Sanabria and Fabiola Larios · 2021–22 · generative image cycle
-        and A-Frame environment
+        Moises Sanabria and Fabiola Larios · launched Feb 14th, 2022
       </p>
 
-      <h2>What this is</h2>
+      <h2>The Project</h2>
       <p>
-        Tech Prophecies is a cycle of neural images and a navigable 3D space.
-        Each still is generated from machine-vision noise and paired with a
-        short techno-scriptural verse. Together they stage belief, labor, and
-        desire inside networked systems — not as a collection to purchase, but
-        as an artwork to enter.
+        Each Prophecy is unique and no two are exactly alike. The combination of
+        a Tech Prophecy aesthetics was randomly generated from neural noise.
+      </p>
+      <h3 className="label">Medium</h3>
+      <p>
+        The stills were generated in 2021 with VQGAN+CLIP, a CLIP-guided GAN,
+        earlier than Stable Diffusion.
+      </p>
+      <p>
+        There are Tech Prophecies created by different machine learning models
+        and have different attributes influencing the rarity.
+      </p>
+      <p>
+        Tech Prophecies is a community-driven movement aspiring to
+        revolutionize the conversation around human machine belief and
+        technological singularity.
       </p>
 
-      <h2>Medium</h2>
-      <ul>
-        <li>Generative stills (neural imagery)</li>
-        <li>Web environment (A-Frame)</li>
-        <li>GLTF sculpture (digital bible / ether)</li>
+      <h2>Rarity</h2>
+      <ul className="rarity">
+        <li>Common — 48 designed (8:1)</li>
+        <li>Rare — 20 (1:1)</li>
+        <li>Super Rare — 14 (1:5)</li>
+        <li>Ultra Rare — 10 (1:12)</li>
+        <li>Secret Rare — 1 (1:48)</li>
       </ul>
-
-      <h2>Who</h2>
       <p>
-        Moises Sanabria and Fabiola Larios. The space was first assembled in
-        2021–22 as a public web environment around the image cycle.
+        Prompts, subjects, types, elements, and entropy tags sit under each
+        still. Cyborg, human, machine, plant. Biological, divine, ghost.
+        Singularity, surveillance, capitalism, climate. The verse is the other
+        half of the image.
       </p>
 
-      <h2>Next</h2>
+      <h2>Technical Specifications</h2>
       <p>
-        <Link href="/metaverse">
-          <a>Enter the space</a>
-        </Link>
-        {' · '}
+        Every Tech Prophecy is a verse in the religious techno singularity
+        scripture. Images are programmatically generated with a variety of
+        subjects, authors, and more. The stills live here as a public cycle.
+        The space is an A-Frame environment with a GLTF bible.
+      </p>
+
+      <h2>We are the clergy | Creators</h2>
+      <div className="creators">
+        <span>moisesdsanabria</span>
+        <span>fabiolalarios</span>
+      </div>
+      <p>Devout individuals building products and culture.</p>
+      <p>
+        This project is meant to grow and evolve. Find the grid, or enter the
+        space.
+      </p>
+      <p>
         <Link href="/#grid-header">
           <a>View the grid</a>
+        </Link>
+        {' · '}
+        <Link href="/metaverse">
+          <a>Enter the space</a>
         </Link>
       </p>
     </AboutStyles>
