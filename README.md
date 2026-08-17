@@ -6,7 +6,7 @@ Generative image cycle and A-Frame environment. Public restage of the original w
 
 ## Run locally
 
-Node 18. The Next 11 build needs the OpenSSL legacy provider (already in the npm scripts).
+Node 24. The Next 11 build needs the OpenSSL legacy provider (already in the npm scripts).
 
 ```bash
 npm install
