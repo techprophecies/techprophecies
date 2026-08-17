@@ -16,6 +16,7 @@ export {default as Footer} from './Footer';
 export {default as Card} from './Card';
 export {default as Feature} from './Feature';
 export {default as Background} from './Background';
+export {default as Lightbox} from './Lightbox';
 
 // VIDEO
 export {default as Video} from './Video';

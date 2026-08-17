@@ -1,8 +1,10 @@
+import {useCallback, useState} from 'react';
 import styled from 'styled-components';
 
 import {works} from '../works';
 import GridHeader from './GridHeader';
 import Card from './Card';
+import Lightbox from './Lightbox';
 
 const GridStyles = styled.section`
   box-sizing: border-box;
@@ -28,7 +30,7 @@ const GridStyles = styled.section`
   .grid-wrapper-inner {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 32px 20px;
   }
   @media (min-width: 40em) {
     .grid-wrapper-inner {
@@ -37,35 +39,55 @@ const GridStyles = styled.section`
   }
   @media (min-width: 64em) {
     .grid-wrapper-inner {
-      grid-gap: var(--st--space-6);
       grid-template-columns: repeat(3, 1fr);
+      gap: 40px 28px;
     }
   }
   @media (min-width: 80em) {
     .grid-wrapper-inner {
-      grid-gap: var(--st--space-7);
       grid-template-columns: repeat(4, 1fr);
     }
   }
 `;
 
 export default function Grid() {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const close = useCallback(() => setActiveIndex(null), []);
+  const prev = useCallback(() => {
+    setActiveIndex((index) =>
+      index == null ? index : (index + works.length - 1) % works.length,
+    );
+  }, []);
+  const next = useCallback(() => {
+    setActiveIndex((index) =>
+      index == null ? index : (index + 1) % works.length,
+    );
+  }, []);
+
+  const active = activeIndex == null ? null : works[activeIndex];
+
   return (
     <GridStyles>
-      <GridHeader />
+      <GridHeader count={works.length} />
       <div className="grid-wrapper">
         <div className="grid-wrapper-inner">
-          {works.map((work) => (
+          {works.map((work, index) => (
             <Card
               key={work.id}
               id={work.id}
               image={work.image}
               name={work.name}
               description={work.description}
+              lazy={index > 7}
+              onOpen={() => setActiveIndex(index)}
             />
           ))}
         </div>
       </div>
+      {active ? (
+        <Lightbox work={active} onClose={close} onPrev={prev} onNext={next} />
+      ) : null}
     </GridStyles>
   );
 }

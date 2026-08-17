@@ -9,9 +9,9 @@ const AboutStyles = styled.div`
   font-size: 1.15rem;
   font-weight: 200;
   line-height: 1.6;
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 48px 24px 120px;
+  padding: 72px 24px 120px;
   h1 {
     font-family: 'TechProphecy', serif;
     color: #fff;

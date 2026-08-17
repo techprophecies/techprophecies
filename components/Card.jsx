@@ -1,71 +1,166 @@
 import styled from 'styled-components';
 
-const CardStyles = styled.div`
+const CardStyles = styled.button`
+  display: block;
+  width: 100%;
   margin: 0;
-  max-width: 300px;
-  min-width: 0;
-  border-radius: 0px;
-  flex: 1 1 auto;
-  background-color: var(--theme-ui-colors-white-100, #ffffff);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0px 10px 20px rgb(0 0 0 / 5%);
-  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
-  text-decoration: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
   color: inherit;
+  font: inherit;
+  appearance: none;
   position: relative;
   will-change: transform;
-  :hover {
-    transform: translateY(-4px);
-    box-shadow: 0px 10px 20px rgb(0 0 0 / 10%);
+  transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-6px);
+    outline: none;
   }
-  @media screen and (min-width: 40em) {
-    border-radius: 10px;
-  }
-  .flex-body-container {
-    list-style-type: none;
-    padding: 1.5rem;
-    border-radius: 15px;
-    color: white;
-    background-color: #14253d;
-    box-shadow: 8px 10px 0 10px #0c1627;
-  }
-  .flex-body-container h1 {
-    display: inline;
-    font-size: 1.1rem;
-    margin: 0;
-  }
-  .flex-body-container img.prophecy {
-    width: 100%;
-    height: auto;
+
+  .frame {
+    position: relative;
+    overflow: hidden;
     aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 1.5rem;
-    display: block;
-    background: #0c1627;
+    background: #0c0c0c;
+    outline: 1px solid transparent;
+    transition: outline-color 300ms cubic-bezier(0.23, 1, 0.32, 1);
   }
-  .paragraph {
-    margin-top: 1rem;
-    margin-bottom: 0;
-    color: #8bacda;
-    font-size: 16px;
-    line-height: 1.4;
+
+  &:hover .frame,
+  &:focus-visible .frame {
+    outline-color: rgba(0, 255, 247, 0.55);
+  }
+
+  .prophecy {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1);
+    transition: transform 500ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  &:hover .prophecy,
+  &:focus-visible .prophecy {
+    transform: scale(1.06);
+  }
+
+  .verse {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 48px 16px 16px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.88));
+    color: #e8e8e8;
+    font-family: 'TechProphecy-Regular', Georgia, serif;
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 280ms ease, transform 280ms ease;
+    pointer-events: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &:hover .verse,
+  &:focus-visible .verse {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .meta {
+    padding: 12px 0 4px;
+  }
+
+  .number {
+    display: block;
+    color: #8a8a8a;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .name {
+    margin: 0;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  @media (hover: none) {
+    &:hover {
+      transform: none;
+    }
+    &:hover .prophecy {
+      transform: none;
+    }
+    &:hover .verse {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+    &:hover,
+    &:focus-visible {
+      transform: none;
+    }
+    .prophecy,
+    .verse {
+      transition: none;
+    }
+    &:hover .prophecy,
+    &:focus-visible .prophecy {
+      transform: none;
+    }
+    &:hover .verse,
+    &:focus-visible .verse {
+      opacity: 1;
+      transform: none;
+    }
   }
 `;
 
-export default function Card({image, name, description, id}) {
+export default function Card({
+  image,
+  name,
+  description,
+  id,
+  lazy = true,
+  onOpen,
+}) {
+  const number = String(id).padStart(2, '0');
+
   return (
-    <CardStyles>
-      <div className="flex-body-container">
-        <img className="prophecy" src={image} alt={name} />
-        <h1>{name}</h1>
-        {description ? (
-          <div className="paragraph">
-            <p>{description}</p>
-          </div>
-        ) : null}
+    <CardStyles
+      type="button"
+      onClick={() => onOpen && onOpen()}
+      aria-label={`${name}. Open prophecy ${number}`}
+    >
+      <div className="frame">
+        <img
+          className="prophecy"
+          src={image}
+          alt=""
+          loading={lazy ? 'lazy' : 'eager'}
+        />
+        {description ? <p className="verse">{description}</p> : null}
+      </div>
+      <div className="meta">
+        <span className="number">{number}</span>
+        <h2 className="name">{name}</h2>
       </div>
     </CardStyles>
   );
