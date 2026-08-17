@@ -17,9 +17,10 @@ const TopProgressBar = dynamic(
 export default function MyApp({Component, pageProps}) {
   const router = useRouter();
   const bare = router.pathname === '/metaverse';
+  const fold = router.pathname === '/';
 
   return (
-    <Page bare={bare}>
+    <Page bare={bare} fold={fold}>
       <Head>
         <title>Tech Prophecies</title>
         <meta

@@ -48,6 +48,14 @@ const FeatureStyles = styled.section`
     }
   }
 
+  @media (min-width: 96em) {
+    .feature-wrapper {
+      max-width: 1920px;
+      gap: 88px;
+      padding: 112px 32px;
+    }
+  }
+
   .feature-still {
     display: block;
     width: 100%;
@@ -178,11 +186,17 @@ const FeatureStyles = styled.section`
     color: white;
     font-family: 'TechProphecy', serif;
     font-weight: 200;
-    font-size: clamp(22px, 4.6vw, 56px);
+    font-size: clamp(18px, 5.2vw, 36px);
     line-height: 1.15;
     letter-spacing: -0.02em;
     text-shadow: 1px 1px 10px #fff, 1px 1px 10px #ccc;
     max-width: 18em;
+  }
+
+  @media (min-width: 52em) {
+    .verse {
+      font-size: clamp(22px, 4.2vw, 52px);
+    }
   }
 
   @media (hover: none) {

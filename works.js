@@ -2,6 +2,7 @@ import {artworks} from './artworks';
 import {nftarray} from './nfts';
 import {chapel} from './chapel';
 import {videos} from './videos';
+import {voices} from './voices';
 
 function titleFromPath(path) {
   const file = path.split('/').pop().replace(/\.[^.]+$/, '');
@@ -36,5 +37,6 @@ export const works = artworks.map((image, index) => {
     entropy: meta.entropy || '',
     prompt: meta.prompt || '',
     video: videos[n] || '',
+    voice: voices[n] || '',
   };
 });

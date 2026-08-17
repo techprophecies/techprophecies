@@ -54,6 +54,7 @@ const GridStyles = styled.section`
   @media (min-width: 96em) {
     .grid-wrapper-inner {
       grid-template-columns: repeat(5, 1fr);
+      gap: 40px 32px;
     }
   }
 `;

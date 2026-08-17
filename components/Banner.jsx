@@ -5,6 +5,25 @@ import styled from 'styled-components';
 import Symbol from './Symbol';
 import Background from './Background';
 
+export const HeroFold = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100svh;
+  max-height: 100svh;
+  overflow: hidden;
+  background: #000;
+
+  header {
+    flex-shrink: 0;
+  }
+
+  #banner {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: auto;
+  }
+`;
+
 const BannerStyles = styled.section`
   z-index: 4;
   position: relative;
@@ -12,9 +31,8 @@ const BannerStyles = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0;
-  height: 100svh;
-  min-height: 100svh;
   overflow: hidden;
+  padding-bottom: 72px;
   --px: 0;
   --py: 0;
   background: #000;
@@ -28,7 +46,7 @@ const BannerStyles = styled.section`
 
   .enter-space {
     position: absolute;
-    bottom: max(24px, env(safe-area-inset-bottom));
+    bottom: max(16px, env(safe-area-inset-bottom));
     left: 50%;
     transform: translateX(-50%);
     z-index: 600;
@@ -39,16 +57,21 @@ const BannerStyles = styled.section`
     letter-spacing: 0.12em;
     text-transform: uppercase;
     border: 1px solid rgba(255, 255, 255, 0.45);
-    padding: 12px 20px;
+    min-height: 44px;
+    padding: 12px 22px;
     pointer-events: auto;
-    background: transparent;
+    background: rgba(0, 0, 0, 0.35);
     cursor: pointer;
     appearance: none;
+    transition: color 180ms ease, border-color 180ms ease, box-shadow 180ms ease,
+      background 180ms ease;
   }
   .enter-space:hover,
   .enter-space:focus-visible {
     color: #00fff7;
     border-color: #00fff7;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 0 1px #00fff7, 0 0 22px rgba(0, 255, 247, 0.45);
     outline: none;
   }
   div {
@@ -77,7 +100,7 @@ const BannerStyles = styled.section`
   }
 
   .banner-heading {
-    font-size: clamp(28px, 9vw, 80px);
+    font-size: clamp(22px, 8vw, 80px);
     font-family: 'TechProphecy', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -185,9 +208,22 @@ const BannerStyles = styled.section`
     margin: 0 auto;
     left: 0;
     right: 0;
-    max-width: min(500px, 78vw);
+    display: flex;
+    justify-content: center;
     z-index: 1;
     pointer-events: none;
+  }
+
+  @media (max-height: 520px) and (orientation: landscape) {
+    .text-wrapper {
+      height: clamp(72px, 28vh, 140px);
+    }
+    .banner-heading {
+      font-size: clamp(18px, 6vh, 42px);
+    }
+    .enter-space {
+      bottom: max(8px, env(safe-area-inset-bottom));
+    }
   }
 
   .enter-overlay {
