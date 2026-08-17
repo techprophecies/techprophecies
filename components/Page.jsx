@@ -1,6 +1,6 @@
 import styled, {createGlobalStyle} from 'styled-components';
 
-import {Header} from '../components';
+import Header from './Header';
 
 const GlobalStyles = createGlobalStyle`
 :root {
@@ -107,11 +107,13 @@ const GlobalStyles = createGlobalStyle`
     }
     @font-face {
       font-family: 'TechProphecy';
-      src: url('./assets/fonts/CloisterBlack.woff');
+      src: url('/assets/fonts/CloisterBlack.woff');
+      font-display: swap;
     }
     @font-face {
       font-family: 'TechProphecy-Regular';
-      src: url('./assets/fonts/LibreBaskerville-Regular.ttf');
+      src: url('/assets/fonts/LibreBaskerville-Regular.ttf');
+      font-display: swap;
     }
     textarea:focus,
     input:focus {
@@ -150,6 +152,68 @@ const GlobalStyles = createGlobalStyle`
       flex-direction: column;
       -moz-box-flex: 1;
       flex-grow: 1;
+    }
+    header .menu-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 16px;
+      min-height: 44px;
+    }
+    header nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 2px;
+    }
+    header nav a {
+      position: relative;
+      font-family: 'TechProphecy', serif;
+      font-size: 15px;
+      font-weight: 200;
+      color: rgba(255, 255, 255, 0.62);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      overflow: hidden;
+      transition: color 180ms ease, letter-spacing 180ms ease,
+        text-shadow 180ms ease;
+    }
+    header nav a::after {
+      content: '';
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 6px;
+      height: 1px;
+      background: #00fff7;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    header nav a:hover,
+    header nav a:focus-visible {
+      color: #00fff7;
+      letter-spacing: 0.18em;
+      text-shadow: 0 0 12px rgba(0, 255, 247, 0.45);
+      outline: none;
+    }
+    header nav a:hover::after,
+    header nav a:focus-visible::after,
+    header nav a[aria-current='page']::after {
+      transform: scaleX(1);
+    }
+    header nav a[aria-current='page'] {
+      color: #ffffff;
+    }
+    header img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
     }
 `;
 

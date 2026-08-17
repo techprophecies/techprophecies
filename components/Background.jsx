@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 const BackgroundStyles = styled.div`
+  position: absolute;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+
   @keyframes move-twink-back {
     from {
       background-position: 0 0;
@@ -10,30 +15,7 @@ const BackgroundStyles = styled.div`
       background-position: -10000px 5000px;
     }
   }
-  @-webkit-keyframes move-twink-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -10000px 5000px;
-    }
-  }
-  @-moz-keyframes move-twink-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -10000px 5000px;
-    }
-  }
-  @-ms-keyframes move-twink-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: -10000px 5000px;
-    }
-  }
+
   @keyframes move-clouds-back {
     from {
       background-position: 0 0;
@@ -42,77 +24,68 @@ const BackgroundStyles = styled.div`
       background-position: 10000px 0;
     }
   }
-  @-webkit-keyframes move-clouds-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: 10000px 0;
-    }
-  }
-  @-moz-keyframes move-clouds-back {
-    from {
-      background-position: 0 0;
-    }
-    to {
-      background-position: 10000px 0;
-    }
-  }
-  @-ms-keyframes move-clouds-back {
-    from {
-      background-position: 0;
-    }
-    to {
-      background-position: 10000px 0;
-    }
-  }
+
   .stars,
   .twinkling,
   .clouds {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
     display: block;
+    will-change: transform;
+    transition: transform 120ms linear;
   }
-  .stars {
-    background: #000
-      url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat
-      top center;
-    z-index: 0;
-  }
-  .twinkling {
-    background: transparent
-      url('http://www.script-tutorials.com/demos/360/images/twinkling.png')
-      repeat top center;
-    z-index: 1;
 
-    -moz-animation: move-twink-back 200s linear infinite;
-    -ms-animation: move-twink-back 200s linear infinite;
-    -o-animation: move-twink-back 200s linear infinite;
-    -webkit-animation: move-twink-back 200s linear infinite;
+  .stars {
+    background: #000 url('/assets/images/stars.png') repeat top center;
+    z-index: 0;
+    transform: translate3d(
+      calc(var(--px, 0) * -18px),
+      calc(var(--py, 0) * -18px),
+      0
+    );
+  }
+
+  .twinkling {
+    background: transparent url('/assets/images/twinkling.png') repeat top
+      center;
+    z-index: 1;
+    transform: translate3d(
+      calc(var(--px, 0) * -32px),
+      calc(var(--py, 0) * -32px),
+      0
+    );
     animation: move-twink-back 200s linear infinite;
   }
-  .clouds {
-    background: transparent url('./assets/images/cloudsblue.png') repeat top
-      center;
-    z-index: 3;
 
-    -moz-animation: move-clouds-back 200s linear infinite;
-    -ms-animation: move-clouds-back 200s linear infinite;
-    -o-animation: move-clouds-back 200s linear infinite;
-    -webkit-animation: move-clouds-back 200s linear infinite;
+  .clouds {
+    background: transparent url('/assets/images/cloudsblue.png') repeat top
+      center;
+    z-index: 2;
+    opacity: 0.7;
+    transform: translate3d(
+      calc(var(--px, 0) * -52px),
+      calc(var(--py, 0) * -26px),
+      0
+    );
     animation: move-clouds-back 200s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stars,
+    .twinkling,
+    .clouds {
+      animation: none;
+      transition: none;
+      transform: none;
+    }
   }
 `;
 
 export default function Background() {
   return (
-    <BackgroundStyles id="card-background">
+    <BackgroundStyles id="card-background" aria-hidden="true">
       <div className="stars" />
       <div className="twinkling" />
       <div className="clouds" />

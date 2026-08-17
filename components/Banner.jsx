@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import {Symbol} from '../components';
+import Symbol from './Symbol';
 
 const BannerStyles = styled.section`
   z-index: 4;

@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback} from 'react';
 import styled from 'styled-components';
 
 import {works} from '../works';
@@ -50,20 +50,13 @@ const GridStyles = styled.section`
   }
 `;
 
-export default function Grid() {
-  const [activeIndex, setActiveIndex] = useState(null);
-
-  const close = useCallback(() => setActiveIndex(null), []);
-  const prev = useCallback(() => {
-    setActiveIndex((index) =>
-      index == null ? index : (index + works.length - 1) % works.length,
-    );
-  }, []);
-  const next = useCallback(() => {
-    setActiveIndex((index) =>
-      index == null ? index : (index + 1) % works.length,
-    );
-  }, []);
+export default function Grid({activeIndex, onOpen, onClose, onPrev, onNext}) {
+  const open = useCallback(
+    (index) => {
+      if (onOpen) onOpen(index);
+    },
+    [onOpen],
+  );
 
   const active = activeIndex == null ? null : works[activeIndex];
 
@@ -80,13 +73,13 @@ export default function Grid() {
               name={work.name}
               description={work.description}
               lazy={index > 7}
-              onOpen={() => setActiveIndex(index)}
+              onOpen={() => open(index)}
             />
           ))}
         </div>
       </div>
       {active ? (
-        <Lightbox work={active} onClose={close} onPrev={prev} onNext={next} />
+        <Lightbox work={active} onClose={onClose} onPrev={onPrev} onNext={onNext} />
       ) : null}
     </GridStyles>
   );

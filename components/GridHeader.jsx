@@ -19,9 +19,12 @@ const GridHeaderStyles = styled.div`
   h2 {
     margin: 0;
     color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-family: 'TechProphecy', serif;
+    font-size: 28px;
+    font-weight: 200;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 8px #fff, 1px 1px 8px #ccc;
   }
   .count {
     color: #8a8a8a;

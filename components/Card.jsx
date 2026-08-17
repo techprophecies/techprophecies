@@ -93,10 +93,12 @@ const CardStyles = styled.button`
   .name {
     margin: 0;
     color: #fff;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    font-family: 'TechProphecy', serif;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.25;
   }
 
   @media (hover: none) {
@@ -160,7 +162,7 @@ export default function Card({
       </div>
       <div className="meta">
         <span className="number">{number}</span>
-        <h2 className="name">{name}</h2>
+        <span className="name">{name}</span>
       </div>
     </CardStyles>
   );
