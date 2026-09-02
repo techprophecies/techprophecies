@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Film from '../components/Film';
+
 const AboutStyles = styled.div`
   position: relative;
   z-index: 5;
@@ -88,6 +90,7 @@ export default function About() {
         Each Prophecy is unique and no two are exactly alike. The combination of
         a Tech Prophecy aesthetics was randomly generated from neural noise.
       </p>
+      <Film compact />
       <h3 className="label">Medium</h3>
       <p>
         The stills were generated in 2021 with VQGAN+CLIP, a CLIP-guided GAN,

@@ -15,6 +15,7 @@ export {default as Footer} from './Footer';
 // CARD
 export {default as Card} from './Card';
 export {default as Feature} from './Feature';
+export {default as Film} from './Film';
 export {default as Background} from './Background';
 export {default as Lightbox} from './Lightbox';
 

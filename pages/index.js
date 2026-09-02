@@ -3,6 +3,7 @@ import {useCallback, useState} from 'react';
 import Header from '../components/Header';
 import Banner, {HeroFold} from '../components/Banner';
 import Feature from '../components/Feature';
+import Film from '../components/Film';
 import Grid from '../components/Grid';
 import Footer from '../components/Footer';
 import {works} from '../works';
@@ -29,6 +30,7 @@ export default function IndexPage() {
         <Banner />
       </HeroFold>
       <Feature onOpen={setActiveIndex} />
+      <Film />
       <Grid
         activeIndex={activeIndex}
         onOpen={setActiveIndex}
